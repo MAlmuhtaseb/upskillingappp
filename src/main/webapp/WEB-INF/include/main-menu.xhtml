@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	>
+	
+		<h:form id="menuForm">
+		<p:menubar>
+		
+		<p:menuitem value="Home" outcome="/home.xhtml"/>
+		
+		<p:submenu label="Tables">
+		<p:menuitem value="University" outcome="/secured/university.xhtml"/>
+		<p:menuitem value="Program" outcome="/secured/program.xhtml"/>
+		<p:menuitem value="School" outcome="/secured/school.xhtml"/>
+		<p:menuitem value="Student" outcome="/secured/student.xhtml"/>
+		<p:menuitem value="Student Result" outcome="/secured/student-result.xhtml"/>
+		<p:menuitem value="Training Course" outcome="/secured/training-course.xhtml"/>
+		</p:submenu>
+		
+		<p:submenu label="Tables">
+		<p:menuitem value="Add University" outcome="/secured/add-university.xhtml"/>
+		<p:menuitem value="Add Program" outcome="/secured/add-program.xhtml"/>
+		<p:menuitem value="Add School" outcome="/secured/add-school.xhtml"/>
+		<p:menuitem value="Add Student" outcome="/secured/add-student.xhtml"/>
+		<p:menuitem value="Add Student Result" outcome="/secured/student-result.xhtml"/>
+		<p:menuitem value="Add Training Course" outcome="/secured/add-training-course.xhtml"/>
+		</p:submenu>
+		
+		
+		<p:menuitem value="Logout" action="#{mbSec.logout()}" ajax="false"/>
+		
+		
+		
+		</p:menubar>
+		
+		</h:form>
+	
+	
+</ui:composition>

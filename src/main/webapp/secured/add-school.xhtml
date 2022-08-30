@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="title">Upskilling Web Application</ui:define>
+
+	<ui:define name="content">
+
+<h:form id="form">
+
+<p:panelGrid columns="2">
+
+<p:outputLabel value="School ID" />
+				<p:inputText value="#{mbAddSchool.school.schoolId}" />
+
+				<p:outputLabel value="School English Name" />
+				<p:inputText value="#{mbAddSchool.school.schoolEName}" />
+
+				<p:outputLabel value="School Arabic Name" />
+				<p:inputText value="#{mbAddSchool.school.schoolAName}" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Add" action="#{mbAddSchool.add()}"
+						ajax="false" />
+				</f:facet>
+
+</p:panelGrid>
+
+</h:form>
+
+
+</ui:define>
+</ui:composition>

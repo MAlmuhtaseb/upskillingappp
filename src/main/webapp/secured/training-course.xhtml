@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="title">Upskilling Web Application</ui:define>
+
+	<ui:define name="content">
+		<h:form id="form">
+
+			<p:panel>
+
+				<p:dataTable value="#{mbTrainingCourse.trainingCourseTable}" var="c">
+
+					<f:facet name="header">
+						<h:outputText
+							value="Courses (#{mbTrainingCourse.trainingCourseTable.size()})" />
+					</f:facet>
+
+					<p:column headerText="Course ID">
+						<h:outputText value="#{c.courseId}" />
+					</p:column>
+
+					<p:column headerText="Course English Name">
+						<h:outputText value="#{c.courseEName}" />
+					</p:column>
+
+					<p:column headerText="Course Arabic Name">
+						<h:outputText value="#{c.courseAName}" />
+					</p:column>
+
+					<p:column headerText="Maximum Students">
+						<h:outputText value="#{c.maxStudents}" />
+					</p:column>
+
+					<p:column headerText="Short Description">
+						<h:outputText value="#{c.detailedDesc}" />
+					</p:column>
+
+					<p:column headerText="Detailed Description">
+						<h:outputText value="#{c.detailedDesc}" />
+					</p:column>
+
+					<p:column headerText="Edit">
+						<p:commandButton value="..." update=":form:editPnl"
+							process="@this" onclick="PF('trainingCourseDlg').show()">
+							<f:setPropertyActionListener value="#{c}"
+								target="#{mbTrainingCourse.selectedTrainingCourse}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="Remove">
+						<p:commandButton value="X"
+							action="#{mbTrainingCourse.removeTrainingCourse()}" ajax="false">
+							<f:setPropertyActionListener value="#{c}"
+								target="#{mbTrainingCourse.selectedTrainingCourse}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+
+			</p:panel>
+
+			<p:dialog header="Edit Training Course" widgetVar="trainingCourseDlg"
+				modal="true">
+
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="Course ID" />
+					<h:outputText
+						value="#{mbTrainingCourse.selectedTrainingCourse.courseId}" />
+
+					<p:outputLabel value="Course English Name" />
+					<p:inputText
+						value="#{mbTrainingCourse.selectedTrainingCourse.courseEName}" />
+
+					<p:outputLabel value="Course Arabic Name" />
+					<p:inputText
+						value="#{mbTrainingCourse.selectedTrainingCourse.courseAName}" />
+
+					<p:outputLabel value="Maximum Students" />
+					<p:inputText
+						value="#{mbTrainingCourse.selectedTrainingCourse.maxStudents}" />
+
+					<p:outputLabel value="Short Description" />
+					<p:inputText
+						value="#{mbTrainingCourse.selectedTrainingCourse.shortDesc}" />
+
+					<p:outputLabel value="Detailed Description" />
+					<p:inputText
+						value="#{mbTrainingCourse.selectedTrainingCourse.detailedDesc}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Add"
+							action="#{mbTrainingCourse.updateTrainingCourse()}" ajax="false" />
+						<p:commandButton value="Close" type="button"
+							onclick="PF('trainingCourseDlg').hide()" />
+
+					</f:facet>
+
+				</p:panelGrid>
+
+			</p:dialog>
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

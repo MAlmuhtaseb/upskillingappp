@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:form id="loginForm">
+		<div align="center">
+			<p:spacer height="100" />
+			<p:panelGrid columns="2">
+
+				<p:outputLabel value="username" for="user" />
+				<p:inputText id="user" value="#{mbSec.username}" />
+
+				<p:outputLabel value="Password" for="pass" />
+				<p:inputText id="pass" value="#{mbSec.password}" />
+
+				<f:facet name="footer">
+					<p:commandButton value="login" action="#{mbSec.checkUser()}"
+						ajax="false" />
+					<p:commandButton value="reset" type="reset" />
+
+					<p:selectOneMenu value="#{mbSec.lang}" onchange="submit()"
+						valueChangeListener="#{mbSec.localeChanged}">
+						<f:selectItems value="#{mbSec.countries}" />
+					</p:selectOneMenu>
+
+				</f:facet>
+
+
+			</p:panelGrid>
+		</div>
+	</h:form>
+</ui:composition>
+

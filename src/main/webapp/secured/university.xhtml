@@ -1,0 +1,105 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="title">Upskilling Web Application</ui:define>
+
+	<ui:define name="content">
+
+	<h:form id="form">
+
+		<p:growl showDetail="true">
+			<p:autoUpdate />
+		</p:growl>
+
+		<p:panel id="uniPnl">
+
+			<p:dataTable value="#{mbUniversity.universityTable}" var="u">
+				<f:facet name="header">
+					<h:outputText
+						value="Universities (#{mbUniversity.universityTable.size()})" />
+				</f:facet>
+
+				<p:column headerText="University ID" sortBy="#{u.universityId}">
+					<h:outputText value="#{u.universityId}" />
+				</p:column>
+
+				<p:column headerText="University English Name"
+					sortBy="#{u.universityEName}">
+					<h:outputText value="#{u.universityEName}" />
+				</p:column>
+
+				<p:column headerText="University Arabic Name"
+					sortBy="#{u.universityAName}">
+					<h:outputText value="#{u.universityAName}" />
+				</p:column>
+
+				<p:column headerText="Website" sortBy="#{u.website}">
+					<h:outputText value="#{u.website}" />
+				</p:column>
+
+
+
+				<p:column headerText="Edit">
+					<p:commandButton value="Edit" update=":form:editPnl"
+						process="@this" onclick="PF('uniEditDlg').show()">
+						<f:setPropertyActionListener value="#{u}"
+							target="#{mbUniversity.selectedUniversity}" />
+					</p:commandButton>
+				</p:column>
+
+				<p:column headerText="Delete">
+					<p:commandButton value="Delete"
+						action="#{mbUniversity.removeUniversity()}" ajax="false">
+						<f:setPropertyActionListener value="#{u}"
+							target="#{mbUniversity.selectedUniversity}"></f:setPropertyActionListener>
+					</p:commandButton>
+				</p:column>
+
+
+
+
+
+			</p:dataTable>
+
+		</p:panel>
+
+
+
+		<p:dialog header="Edit University" widgetVar="uniEditDlg" modal="true">
+
+			<p:panelGrid id="editPnl" columns="2">
+
+				<p:outputLabel value="University ID" />
+				<h:outputText
+					value="#{mbUniversity.selectedUniversity.universityId}" />
+
+				<p:outputLabel value="University English Name" />
+				<p:inputText
+					value="#{mbUniversity.selectedUniversity.universityEName}" />
+
+				<p:outputLabel value="University Arabic Name" />
+				<p:inputText
+					value="#{mbUniversity.selectedUniversity.universityAName}" />
+
+				<p:outputLabel value="Website" />
+				<p:inputText value="#{mbUniversity.selectedUniversity.website}" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Edit"
+						action="#{mbUniversity.updateUniversity()}" ajax="false" />
+					<p:commandButton value="Close" type="button"
+						onclick="PF('uniEditDlg').hide()" />
+				</f:facet>
+			</p:panelGrid>
+
+		</p:dialog>
+
+	</h:form>
+
+</ui:define>
+</ui:composition>

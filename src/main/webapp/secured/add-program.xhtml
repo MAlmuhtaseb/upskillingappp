@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="title">Upskilling Web Application</ui:define>
+
+	<ui:define name="content">
+
+
+
+<h:form id="form">
+
+<p:panelGrid columns="2">
+
+<p:outputLabel value="Program ID" />
+				<p:inputText value="#{mbAddProgram.program.programId}" />
+
+			  	<p:outputLabel value="School ID" for="schoolAdd"/>
+				<p:selectOneMenu id="schoolAdd"
+					value="#{mbAddProgram.program.school.schoolId}">
+					<f:selectItems value="#{mbAddProgram.schoolTable}" var="s"
+						itemLabel="#{s.schoolId}" itemValue="#{s.schoolId}" /> 
+
+				</p:selectOneMenu>  
+
+				<p:outputLabel value="Program English Name" />
+				<p:inputText value="#{mbAddProgram.program.programEName}" />
+
+				<p:outputLabel value="Program Arabic Name" />
+				<p:inputText value="#{mbAddProgram.program.programAName}" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Add" action="#{mbAddProgram.add()}"
+						ajax="false" />
+					
+				</f:facet>
+
+</p:panelGrid>
+
+</h:form> 
+</ui:define>
+</ui:composition>
+

@@ -1,0 +1,99 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="title">Upskilling Web Application</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="form">
+
+			<p:panelGrid columns="2">
+
+				<p:outputLabel value="Student ID" />
+				<p:inputText value="#{mbStudent.selectedStudent.studentId}" />
+
+				<p:outputLabel value="English Name" />
+				<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
+
+				<p:outputLabel value="Arabic Name" />
+				<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
+
+				<p:outputLabel value="Mobile" />
+				<p:inputText value="#{mbStudent.selectedStudent.mobile}" />
+
+				<p:outputLabel value="Birth date" />
+				<p:calendar value="#{mbStudent.selectedStudent.birthDate}" />
+
+				<p:outputLabel value="Gender" for="gender" />
+				<p:selectOneRadio id="gender"
+					value="#{mbStudent.selectedStudent.gender}">
+					<f:selectItem itemLabel="Male" itemValue="1" />
+					<f:selectItem itemLabel="Female" itemValue="2" />
+				</p:selectOneRadio>
+
+				<p:outputLabel value="Email" />
+				<p:inputText value="#{mbStudent.selectedStudent.email}" />
+
+				<p:outputLabel value="University Name" for="uni" />
+				<p:selectOneMenu id="uni"
+					value="#{mbStudent.selectedStudent.university.universityEName}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbStudent.studentTable}" var="u"
+						itemLabel="#{u.university.universityEName}"
+						itemValue="#{u.university.universityId}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="School Name" for="school" />
+				<p:selectOneMenu id="school"
+					value="#{mbStudent.selectedStudent.school.schoolEName}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbStudent.studentTable}" var="s"
+						itemLabel="#{s.school.schoolEName}"
+						itemValue="#{s.school.schoolId}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Program Name" for="prog" />
+				<p:selectOneMenu id="prog"
+					value="#{mbStudent.selectedStudent.program.programEName}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbStudent.studentTable}" var="p"
+						itemLabel="#{p.program.programEName}"
+						itemValue="#{p.program.programId}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Final Average" />
+				<p:inputText value="#{mbStudent.selectedStudent.finalAverage}" />
+
+				<p:outputLabel value="Maximum Average" />
+				<p:inputText value="#{mbStudent.selectedStudent.maxAverage}" />
+
+				<p:outputLabel value="Rate" />
+				<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
+
+				<p:outputLabel value="Graduate Year" />
+				<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
+
+				<p:outputLabel value="Graduate Semester" />
+				<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
+
+				<p:commandButton value="Edit" action="#{mbStudent.updateStudent()}"
+					ajax="false" />
+				<p:commandButton value="Close" type="button"
+					onclick="PF('stdEditDlg').hide()" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Add" action="#{mbAddStudent.add()}"
+						ajax="false" />
+				</f:facet>
+
+			</p:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

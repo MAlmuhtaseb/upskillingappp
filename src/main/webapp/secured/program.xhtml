@@ -1,0 +1,92 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="title">Upskilling Web Application</ui:define>
+
+	<ui:define name="content">
+
+	<h:form id="form">
+		<p:panel id="programPnl">
+			<p:dataTable value="#{mbProgram.programTable}" var="p">
+
+				<f:facet name="header">
+					<h:outputText value="Programs (#{mbProgram.programTable.size()})" />
+				</f:facet>
+
+				<p:column headerText="School English Name" sortBy="{#{p.school.schoolEName}}">
+					<h:outputText value="#{p.school.schoolEName}" />
+				</p:column>
+
+				<p:column headerText="Program ID" sortBy="#{p.programId}">
+					<h:outputText value="#{p.programId}" />
+				</p:column>
+
+				<p:column headerText="Program English Name"
+					sortBy="#{p.programEName}">
+					<h:outputText value="#{p.programEName}" />
+				</p:column>
+
+				<p:column headerText="Program Arabic Name"
+					sortBy="#{p.programAName}">
+					<h:outputText value="#{p.programAName}" />
+				</p:column>
+
+				<p:column headerText="Edit">
+					<p:commandButton value="Edit" update=":form:editPnl"
+						process="@this" onclick="PF('progEditDlg').show()">
+						<f:setPropertyActionListener value="#{p}"
+							target="#{mbProgram.selectedProgram}" />
+					</p:commandButton>
+				</p:column>
+
+				<p:column headerText="Delete">
+					<p:commandButton value="Delete"
+						action="#{mbProgram.removeProgram()}" ajax="false">
+						<f:setPropertyActionListener value="#{p}"
+							target="#{mbProgram.selectedProgram}" />
+					</p:commandButton>
+				</p:column>
+
+
+			</p:dataTable>
+		</p:panel>
+
+		
+
+		<p:dialog header="Edit Program" widgetVar="progEditDlg" modal="true">
+			<p:panelGrid id="editPnl" columns="2">
+				<p:outputLabel value="Program ID" />
+				<h:outputText value="#{mbProgram.selectedProgram.programId}" />
+
+		   	   	<p:outputLabel value="School ID" for="schoolEdit"/>
+				<p:selectOneMenu id="schoolEdit"
+					value="#{mbProgram.selectedProgram.school.schoolId}">
+					<f:selectItems value="#{mbProgram.schoolTable}" var="se"
+						itemLabel="#{se.schoolEName}" itemValue="#{se.schoolId}" />
+
+				</p:selectOneMenu> 
+				
+				
+				
+				<p:outputLabel value="Program English Name" />
+				<p:inputText value="#{mbProgram.selectedProgram.programEName}" />
+
+				<p:outputLabel value="Program Arabic Name" />
+				<p:inputText value="#{mbProgram.selectedProgram.programAName}" />
+
+				<p:commandButton value="Edit" action="#{mbProgram.updateProgram()}"
+					ajax="false" />
+				<p:commandButton value="Close" type="button"
+					onclick="PF('progEditDlg').hide()" />
+			</p:panelGrid>
+		</p:dialog>
+
+	</h:form>
+
+</ui:define>
+</ui:composition>

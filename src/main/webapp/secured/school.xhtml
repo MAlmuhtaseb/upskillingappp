@@ -1,0 +1,86 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="title">Upskilling Web Application</ui:define>
+
+	<ui:define name="content">
+
+	<h:form id="form">
+		<p:panel id="schoolPnl">
+
+			<p:dataTable value="#{mbSchool.schoolTable}" var="s">
+
+				<f:facet name="header">
+					<h:outputText value="Schools (#{mbSchool.schoolTable.size()})" />
+				</f:facet>
+
+				<p:column headerText="School ID" sortBy="#{s.schoolId}">
+					<h:outputText value="#{s.schoolId}" />
+				</p:column>
+
+				<p:column headerText="School English Name" sortBy="#{s.schoolEName}">
+					<h:outputText value="#{s.schoolEName}" />
+				</p:column>
+
+				<p:column headerText="School Arabic Name" sortBy="#{s.schoolAName}">
+					<h:outputText value="#{s.schoolAName}" />
+				</p:column>
+
+				<p:column headerText="Edit">
+					<p:commandButton value="Edit" update=":form:editPnl"
+						process="@this" onclick="PF('schoolEditDlg').show()">
+						<f:setPropertyActionListener value="#{s}"
+							target="#{mbSchool.selectedSchool}" />
+					</p:commandButton>
+				</p:column>
+
+				<p:column headerText="Delete">
+					<p:commandButton value="Delete" action="#{mbSchool.removeSchool()}"
+						ajax="false">
+						<f:setPropertyActionListener value="#{s}"
+							target="#{mbSchool.selectedSchool}" />
+					</p:commandButton>
+				</p:column>
+
+				
+
+			</p:dataTable>
+
+		</p:panel>
+
+		
+
+		
+
+		<p:dialog header="Edit School" widgetVar="schoolEditDlg" modal="true">
+
+			<p:panelGrid id="editPnl" columns="2">
+
+				<p:outputLabel value="School ID" />
+				<h:outputText value="#{mbSchool.selectedSchool.schoolId}" /> 
+
+				<p:outputLabel value="School English Name" />
+				<p:inputText value="#{mbSchool.selectedSchool.schoolEName}" />
+
+				<p:outputLabel value="School Arabic Name" />
+				<p:inputText value="#{mbSchool.selectedSchool.schoolAName}" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Edit" action="#{mbSchool.updateSchool()}"
+						ajax="false" />
+					<p:commandButton value="Close" type="button"
+						onclick="PF('schoolEditDlg').hide()" />
+				</f:facet>
+
+			</p:panelGrid>
+
+		</p:dialog>
+	</h:form>
+
+</ui:define>
+</ui:composition>
