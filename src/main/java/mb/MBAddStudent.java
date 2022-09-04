@@ -23,9 +23,12 @@ public class MBAddStudent {
     private List<University> universityTable;
     private List<School> schoolTable;
     private List<Program> programTable;
+    private StudentDAO studentDAO;
     
     @PostConstruct
     public void init() {
+	studentDAO = new StudentDAO();
+	
 	UniversityDAO universityDAO = new UniversityDAO();
 	universityTable = universityDAO.selectAll();
 	
@@ -37,11 +40,13 @@ public class MBAddStudent {
 	ProgramDAO programDAO = new ProgramDAO();
 	programTable = programDAO.selectAll();
 	
+	
+	
     }
     
     
     public String add() {
-	StudentDAO studentDAO = new StudentDAO();
+	
 	studentDAO.insert(student);
 	
 	Message.addMessage("INFO", "added", "added successfully");

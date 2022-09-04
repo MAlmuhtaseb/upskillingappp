@@ -1,6 +1,8 @@
 package mb;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -24,7 +26,7 @@ public class MBStudent {
     private List<University> universityTable;
     private List<School> schoolTable;
     private List<Program> programTable;
-    
+    private Map<Integer, String> genderText;
    
 
     @PostConstruct
@@ -45,6 +47,12 @@ public class MBStudent {
 	programTable = programDAO.selectAll();
 	selectedStudent.setProgram(new Program());
     }
+    
+    public MBStudent() {
+   	genderText = new HashMap<Integer, String>();
+   	genderText.put(1, "Male");
+   	genderText.put(2, "Female");
+       }
     
     public String updateStudent() {
 	studentDAO.update(selectedStudent);
@@ -96,4 +104,14 @@ public class MBStudent {
     public void setProgramTable(List<Program> programTable) {
         this.programTable = programTable;
     }
+
+    public Map<Integer, String> getGenderText() {
+        return genderText;
+    }
+
+    public void setGenderText(Map<Integer, String> genderText) {
+        this.genderText = genderText;
+    }
+    
+    
 }

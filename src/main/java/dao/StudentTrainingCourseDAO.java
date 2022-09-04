@@ -90,14 +90,14 @@ public class StudentTrainingCourseDAO {
 	    db = new Database();
 	    connection = db.getConnection();
 	    ps = connection.prepareStatement(
-		    // Might be wrong, to check later
-		    "update student_training_course set course_id = ?, priority = ? where student_id = ? and course_id = ?");
+		    
+		    "update student_training_course set course_id = ?, priority = ? where student_id = ?");
 
 	    int counter = 1;
-	    ps.setInt(counter++, studentTrainingCourse.getStudent().getStudentId());
+	    
 	    ps.setInt(counter++, studentTrainingCourse.getTrainingCourse().getCourseId());
 	    ps.setInt(counter++, studentTrainingCourse.getPriority());
-
+	    ps.setInt(counter++, studentTrainingCourse.getStudent().getStudentId());
 	    row = ps.executeUpdate();
 
 	} catch (SQLException e) {

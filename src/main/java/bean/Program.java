@@ -10,11 +10,12 @@ public class Program {
     public Program() {
     }
 
-    public Program(int programId, String programAName, String programEName) {
+    public Program(int programId, String programEName, String programAName) {
 	
 	this.programId = programId;
-	this.programAName = programAName;
 	this.programEName = programEName;
+	this.programAName = programAName;
+	
     }
 
     public Program(int programId) {

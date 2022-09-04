@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="title">Upskilling Web Application</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="form">
+
+			<p:panel id="interviewPnl">
+				<p:dataTable value="#{mbInterview.interviewTable}" var="i">
+
+					<f:facet name="header">
+						<h:outputText
+							value="Interviews (#{mbInterview.interviewTable.size()})" />
+					</f:facet>
+	
+						<p:column headerText="Student Name" sortBy="#{i.student.studentEName}">
+						<h:outputText value="#{i.student.studentEName}"/>
+						</p:column>
+						
+						<p:column headerText="Interview Date" sortBy="#{i.interviewDate}">
+						<h:outputText value="#{i.interviewDate}"/>
+						</p:column>
+						
+						<p:column headerText="Interview Time" sortBy="#{i.interviewTime}">
+						<h:outputText value="#{i.interviewTime}"/>
+						</p:column>
+						
+						<p:column headerText="Duration" sortBy="#{i.duration}">
+						<h:outputText value="#{i.duration} minutes"/>
+						</p:column>
+
+						<p:column headerText="Edit">
+						<p:commandButton value="..." update=":form:editPnl" process="@this" onclick="PF('interviewEditDlg').show()">
+						<f:setPropertyActionListener value="#{i}" target="#{mbInterview.selectedInterview}" />
+						</p:commandButton>
+						</p:column>
+						
+						<p:column headerText="Delete">
+						<p:commandButton value="X"  action="#{mbInterview.removeInterview()}" ajax="false">
+						<f:setPropertyActionListener value="#{i}" target="#{mbInterview.selectedInterview}" />
+						</p:commandButton>
+						</p:column>
+
+				</p:dataTable>
+
+			</p:panel>
+			
+			<p:dialog header="Edit Interview" widgetVar="interviewEditDlg" modal="true">
+			<p:panelGrid id="editPnl" columns="2">
+			
+			<p:outputLabel value="Student Name" for="studentList"/>
+			<p:selectOneMenu id="studentList" value="#{mbInterview.selectedInterview.student.studentId}" filter="true">
+			<f:selectItem itemLabel="Select Student" itemValue=""/>
+			<f:selectItems value="#{mbInterview.studentTable}" var="s" itemLabel="#{s.studentEName}" itemValue="#{s.studentId}"/>
+			</p:selectOneMenu>
+			
+			<p:outputLabel value="Interview Date"/>
+			<p:calendar value="#{mbInterview.selectedInterview.interviewDate}"/>
+			
+			<p:outputLabel value="Interview Time"/>
+			<p:calendar value="#{mbInterview.selectedInterview.interviewTime}"/>
+			
+			<p:outputLabel value="Duration"/>
+			<p:inputNumber value="#{mbInterview.selectedInterview.duration}"/>
+			
+			<p:commandButton value="Edit" action="#{mbInterview.updateInterview()}" ajax="false"/>
+			<p:commandButton value="Close" type="button" onclick="PF('interviewEditDlg').hide()"/>
+			
+			</p:panelGrid>
+			
+			</p:dialog>
+
+
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

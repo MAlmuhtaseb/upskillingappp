@@ -12,10 +12,9 @@ public class StudentResult {
     public StudentResult() {
     }
 
-    public StudentResult(Student student, TrainingCourse TrainingCourse, double englishMark, double interviewMark,
+    public StudentResult( double englishMark, double interviewMark,
             int acceptedFlag, String notes) {
-        this.student = student;
-        this.TrainingCourse = TrainingCourse;
+     
         this.englishMark = englishMark;
         this.interviewMark = interviewMark;
         this.acceptedFlag = acceptedFlag;

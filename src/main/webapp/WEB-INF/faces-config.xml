@@ -5,16 +5,18 @@
 	version="2.2">
 
 
-
 	<application>
+
 		<locale-config>
 			<default-locale>en</default-locale>
 			<supported-locale>ar</supported-locale>
 		</locale-config>
+
 		<resource-bundle>
 			<base-name>language.messages</base-name>
 			<var>msg</var>
 		</resource-bundle>
 	</application>
+
 
 </faces-config>

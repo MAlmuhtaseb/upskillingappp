@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="title">Upskilling Web Application</ui:define>
+
+	<ui:define name="content">
+	
+	<h:form id="form">
+	<p:panelGrid columns="2">
+	
+	<p:outputLabel value="Student Name" />
+					<p:selectOneMenu
+						value="#{mbAddStudentTrainingCourse.studentTrainingCourse.student.studentId}" filter="true">
+						<f:selectItem itemLabel="Select Name" itemValue="" />
+						<f:selectItems
+							value="#{mbAddStudentTrainingCourse.studentTable}"
+							var="s" itemLabel="#{s.studentEName}"
+							itemValue="#{s.studentId}" />
+							</p:selectOneMenu>
+							<p:outputLabel value="Course Name" />
+					<p:selectOneMenu
+						value="#{mbAddStudentTrainingCourse.studentTrainingCourse.trainingCourse.courseId}">
+						<f:selectItem itemLabel="Course Name" itemValue="" />
+						<f:selectItems
+							value="#{mbAddStudentTrainingCourse.trainingCourseTable}"
+							var="c" itemLabel="#{c.courseEName}"
+							itemValue="#{c.courseId}" />
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Priority"/>
+					<p:inputNumber value="#{mbAddStudentTrainingCourse.studentTrainingCourse.priority}" />
+					
+				
+					
+					<f:facet name="footer">
+					<p:commandButton value="Add" action="#{mbAddStudentTrainingCourse.Add()}" ajax="false"/>
+					</f:facet>
+					
+					
+	
+	
+	</p:panelGrid>
+	
+	</h:form>
+	
+	
+	
+	</ui:define>
+	</ui:composition>

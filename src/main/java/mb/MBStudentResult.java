@@ -1,6 +1,8 @@
 package mb;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -21,7 +23,7 @@ public class MBStudentResult {
      private StudentResultDAO studentResultDAO;
      private List<Student> studentTable;
      private List<TrainingCourse> trainingCourseTable;
-     
+     private Map<Integer, String> flagText;
      
 
     @PostConstruct
@@ -39,10 +41,16 @@ public class MBStudentResult {
 	  trainingCourseTable = trainingCourseDAO.selectAll();
 	  selectedStudentResult.setTrainingCourse(new TrainingCourse());
      }
+    
+    public MBStudentResult() {
+   	flagText = new HashMap<Integer, String>();
+   	flagText.put(1, "Accepted");
+   	flagText.put(0, "Declined");
+       }
      
      public String updateStudentResult() {
 	 
-	 studentResultDAO.update(getSelectedStudentResult());
+	 studentResultDAO.update(selectedStudentResult);
 	 studentResultTable = studentResultDAO.selectAll();
 	 return null;
      }
@@ -85,4 +93,14 @@ public class MBStudentResult {
     public void setTrainingCourseTable(List<TrainingCourse> trainingCourseTable) {
         this.trainingCourseTable = trainingCourseTable;
     }
+
+    public Map<Integer, String> getFlagText() {
+        return flagText;
+    }
+
+    public void setFlagText(Map<Integer, String> flagText) {
+        this.flagText = flagText;
+    }
+    
+    
 }

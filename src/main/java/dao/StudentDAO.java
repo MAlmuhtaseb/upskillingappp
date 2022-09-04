@@ -133,7 +133,7 @@ public class StudentDAO {
 	    db = new Database();
 	    connection = db.getConnection();
 	    ps = connection.prepareStatement(
-		    "insert into student (student_id, student_ename, student_aname, mobile, birthdate, sex, email, university_id, school_id, program_id, final_average, max_Average, rate, graduate_year, graduate_sem) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		    "insert into student (student_id, student_ename, student_aname, mobile, birthdate, sex, email, final_average, max_Average, rate, graduate_year, graduate_sem , university_id, school_id, program_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	    int counter = 1;
 	    ps.setInt(counter++, student.getStudentId());
 	    ps.setString(counter++, student.getStudentEName());
@@ -142,14 +142,15 @@ public class StudentDAO {
 	    ps.setDate(counter++, new Date(student.getBirthDate().getTime()));
 	    ps.setInt(counter++, student.getGender());
 	    ps.setString(counter++, student.getEmail());
-	    ps.setInt(counter++, student.getUniversity().getUniversityId());
-	    ps.setInt(counter++, student.getSchool().getSchoolId());
-	    ps.setInt(counter++, student.getProgram().getProgramId());
 	    ps.setDouble(counter++, student.getFinalAverage());
 	    ps.setDouble(counter++, student.getMaxAverage());
 	    ps.setString(counter++, student.getRate());
 	    ps.setInt(counter++, student.getGraduateYear());
 	    ps.setInt(counter++, student.getGraduateSemester());
+	    
+	    ps.setInt(counter++, student.getUniversity().getUniversityId());
+	    ps.setInt(counter++, student.getSchool().getSchoolId());
+	    ps.setInt(counter++, student.getProgram().getProgramId());
 
 	    row = ps.executeUpdate();
 

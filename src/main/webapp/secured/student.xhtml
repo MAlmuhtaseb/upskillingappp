@@ -39,8 +39,8 @@
 						<h:outputText value="#{s.birthDate}" />
 					</p:column>
 
-					<p:column headerText="Gender" sortBy="#{s.gender}">
-						<h:outputText value="#{s.gender}" />
+					<p:column headerText="Gender" sortBy="#{mbStudent.genderText[s.gender]}">
+						<h:outputText value="#{mbStudent.genderText[s.gender]}" />
 					</p:column>
 
 					<p:column headerText="Edit">
@@ -102,7 +102,7 @@
 
 					<p:outputLabel value="University Name" for="uni" />
 					<p:selectOneMenu id="uni"
-						value="#{mbStudent.selectedStudent.university.universityEName}">
+						value="#{mbStudent.selectedStudent.university.universityId}">
 						<f:selectItem itemLabel="Select One" itemValue="" />
 						<f:selectItems value="#{mbStudent.studentTable}" var="u"
 							itemLabel="#{u.university.universityEName}"
@@ -111,7 +111,7 @@
 
 					<p:outputLabel value="School Name" for="school"/>
 					<p:selectOneMenu id="school"
-						value="#{mbStudent.selectedStudent.school.schoolEName}">
+						value="#{mbStudent.selectedStudent.school.schoolId}">
 						<f:selectItem itemLabel="Select One" itemValue="" />
 						<f:selectItems value="#{mbStudent.studentTable}" var="s"
 							itemLabel="#{s.school.schoolEName}"
@@ -120,7 +120,7 @@
 
 					<p:outputLabel value="Program Name" for="prog"/>
 					<p:selectOneMenu id="prog"
-						value="#{mbStudent.selectedStudent.program.programEName}">
+						value="#{mbStudent.selectedStudent.program.programId}">
 						<f:selectItem itemLabel="Select One" itemValue="" />
 						<f:selectItems value="#{mbStudent.studentTable}" var="p"
 							itemLabel="#{p.program.programEName}"

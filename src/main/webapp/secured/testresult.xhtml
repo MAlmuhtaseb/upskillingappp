@@ -1,0 +1,63 @@
+<ui:composition template="/WEB-INF/template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">
+		<h:outputText value="#{msg.menu_edit_student_training_course}" />
+	</ui:define>
+
+	<ui:define name="content">
+		<br />
+
+		<h:form id="form">
+			<p:ring id="basic" value="#{mbStdTrainCour.strTable}" var="str">
+				<p:outputPanel>
+            #{str.student.studentID}
+            <br />
+            #{str.student.studentAname}
+            <br />
+
+					<p:commandButton value="..." update=":form:editPnl" onclick="PF('strDlg').show()">
+						<f:setPropertyActionListener value="#{str}" target="#{mbStdTrainCour.selectedSTR}" />
+					</p:commandButton>
+
+				</p:outputPanel>
+			</p:ring>
+
+			<p:dialog header="#{msg.lbl_edit_student_training_course}" widgetVar="strDlg" height="290">
+
+				<p:panelGrid id="editPnl" columns="2" rendered="#{not empty mbStdTrainCour.selectedSTR}" columnClasses="label,value">
+
+
+					<p:outputLabel value="#{msg.lbl_std_ar_name}" for="std" />
+					<p:selectOneMenu id="std" value="#{mbStdTrainCour.student.studentID}" required="true"
+						requiredMessage="#{msg.msg_required}-#{msg.lbl_std_ar_name}">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{mbStdTrainCour.strTable}" var="s" itemLabel="#{s.student.studentAname}" itemValue="#{s.student.studentID}" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel value="#{msg.lbl_course_ar_name}" for="course" />
+					<p:selectOneMenu id="course" value="#{mbStdTrainCour.trainCourse.courseID}" required="true"
+						requiredMessage="#{msg.msg_required}-#{msg.lbl_std_ar_name}">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{mbStdTrainCour.strTable}" var="s" itemLabel="#{s.trainingCourseID.courseAname}"
+							itemValue="#{s.trainingCourseID.courseID}" />
+					</p:selectOneMenu>
+
+					<h:outputText value="#{msg.lbl_priority}:" />
+					<p:inputText value="#{mbStdTrainCour.selectedSTR.priority}" />
+
+					<h:outputText value="#{msg.lbl_selected_course}:" />
+					<p:inputTextarea placeholder="Enter 3 courses in order of priority" value="#{mbStdTrainCour.selectedSTR.course}" />
+
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbStdTrainCour.update()}" ajax="false" />
+						<p:commandButton value="#{msg.btn_back}" onclick="PF('strDialog').hide()" />
+					</f:facet>
+
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
