@@ -81,17 +81,40 @@ public class ProgramDAO {
 	return program;
 
     }
+    
+    public int selectMaxId(Connection connection) {
+	try {
+	    db = new Database();
+	    connection = db.getConnection();
+	    ps = connection.prepareStatement(
+		    "select nvl(max(program_id),0) AS program_id from program");
+	    
+	    rs = ps.executeQuery();
+
+	    if (rs.next()) {
+		return rs.getInt("program_id");
+	    }
+
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	} finally {
+	    Database.close(rs);
+	   
+	}
+	return 0;
+    }
 
     public int insert(Program program) {
 
 	try {
 	    db = new Database();
 	    connection = db.getConnection();
+	    int maxId = selectMaxId(connection);
 	    ps = connection
 		    .prepareStatement("insert into program(program_id, program_ename, program_aname, school_ID) values(?, ?, ?, ?)");
 
 	    int counter = 1;
-	    ps.setInt(counter++, program.getProgramId());
+	    ps.setInt(counter++, maxId + 1);
 	    ps.setString(counter++, program.getProgramEName());
 	    ps.setString(counter++, program.getProgramAName());
 	    ps.setInt(counter++, program.getSchool().getSchoolId());

@@ -3,6 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="/WEB-INF/template/template.xhtml">
 
 
@@ -22,10 +23,14 @@
 	<p:calendar value="#{mbAddInterview.interview.interviewDate}"/>
 	
 	<p:outputLabel value="Interview Time"/>
-	<p:calendar value="#{mbAddInterview.interview.interviewTime}"/>
+	<pe:timePicker value="#{mbAddInterview.interview.interviewTime}" mode="popup"/>
 	
 	<p:outputLabel value="Duration"/>
 	<p:inputText value="#{mbAddInterview.interview.duration}"/>
+	
+	<f:facet name="footer">
+	<p:commandButton value="#{msg.btn_add}" action="#{mbAddInterview.add()}" ajax="false"/>
+	</f:facet>
 	
 	</p:panelGrid>
 	

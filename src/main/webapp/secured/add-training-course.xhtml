@@ -17,11 +17,7 @@
 					<h:outputText value="Add Courses" />
 				</f:facet>
 
-				<p:outputLabel value="Course ID" for="id" />
-				<p:inputNumber id="id"
-					value="#{mbAddTrainingCourse.trainingCourse.courseId}"
-					decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
-					required="true" requiredMessage="enter dept id" />
+
 
 				<p:outputLabel value="Course English Name" for="eName" />
 				<p:inputText id="eName"
@@ -54,10 +50,11 @@
 					value="#{mbAddTrainingCourse.trainingCourse.detailedDesc}"
 					required="true" requiredMessage="enter" maxlength="5000"
 					validatorMessage="Please check msg" />
-					
-					<f:facet name="footer">
-					<p:commandButton value="Add" action="#{mbAddTrainingCourse.add()}" ajax="false"/>
-					</f:facet>
+
+				<f:facet name="footer">
+					<p:commandButton value="Add" action="#{mbAddTrainingCourse.add()}"
+						ajax="false" />
+				</f:facet>
 
 			</p:panelGrid>
 		</h:form>

@@ -75,17 +75,40 @@ public class UniversityDAO {
 	return university;
 
     }
+    
+    public int selectMaxId(Connection connection) {
+	try {
+	    db = new Database();
+	    connection = db.getConnection();
+	    ps = connection.prepareStatement(
+		    "select nvl(max(university_id),0) AS university_id from university");
+	    
+	    rs = ps.executeQuery();
+
+	    if (rs.next()) {
+		return rs.getInt("university_id");
+	    }
+
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	} finally {
+	    Database.close(rs);
+	   
+	}
+	return 0;
+    }
 
     public int insert(University university) {
 
 	try {
 	    db = new Database();
 	    connection = db.getConnection();
+	    int maxId = selectMaxId(connection);
 	    ps = connection.prepareStatement(
 		    "insert into university(university_id, university_aname, university_ename, website) values(?, ?, ?, ?)");
 
 	    int counter = 1;
-	    ps.setInt(counter++, university.getUniversityId());
+	    ps.setInt(counter++, maxId + 1);
 	    ps.setString(counter++, university.getUniversityAName());
 	    ps.setString(counter++, university.getUniversityEName());
 	    ps.setString(counter++, university.getWebsite());

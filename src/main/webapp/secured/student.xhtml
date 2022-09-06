@@ -42,6 +42,23 @@
 					<p:column headerText="Gender" sortBy="#{mbStudent.genderText[s.gender]}">
 						<h:outputText value="#{mbStudent.genderText[s.gender]}" />
 					</p:column>
+					
+					<p:column headerText="Email" sortBy="#{s.email}">
+							<h:outputText value="#{s.email}" />
+						</p:column>
+
+						<p:column headerText="University"
+							sortBy="#{s.university.universityId}">
+							<h:outputText value="#{s.university.universityId}" />
+						</p:column>
+
+						<p:column headerText="School" sortBy="#{s.school.schoolId}">
+							<h:outputText value="#{s.school.schoolId}" />
+						</p:column>
+
+						<p:column headerText="Program" sortBy="#{s.program.programId}">
+							<h:outputText value="#{s.program.programId}" />
+						</p:column>
 
 					<p:column headerText="Edit">
 						<p:commandButton value="..." update=":form:editPnl"
@@ -83,7 +100,7 @@
 					<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
 
 					<p:outputLabel value="Arabic Name" />
-					<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
+					<p:inputText value="#{mbStudent.selectedStudent.studentAName}" />
 
 					<p:outputLabel value="Mobile" />
 					<p:inputText value="#{mbStudent.selectedStudent.mobile}" />
@@ -104,27 +121,27 @@
 					<p:selectOneMenu id="uni"
 						value="#{mbStudent.selectedStudent.university.universityId}">
 						<f:selectItem itemLabel="Select One" itemValue="" />
-						<f:selectItems value="#{mbStudent.studentTable}" var="u"
-							itemLabel="#{u.university.universityEName}"
-							itemValue="#{u.university.universityId}" />
+						<f:selectItems value="#{mbStudent.universityTable}" var="u"
+							itemLabel="#{u.universityEName}"
+							itemValue="#{u.universityId}" />
 					</p:selectOneMenu>
 
 					<p:outputLabel value="School Name" for="school"/>
 					<p:selectOneMenu id="school"
 						value="#{mbStudent.selectedStudent.school.schoolId}">
 						<f:selectItem itemLabel="Select One" itemValue="" />
-						<f:selectItems value="#{mbStudent.studentTable}" var="s"
-							itemLabel="#{s.school.schoolEName}"
-							itemValue="#{s.school.schoolId}" />
+						<f:selectItems value="#{mbStudent.schoolTable}" var="s"
+							itemLabel="#{s.schoolEName}"
+							itemValue="#{s.schoolId}" />
 					</p:selectOneMenu>
 
 					<p:outputLabel value="Program Name" for="prog"/>
 					<p:selectOneMenu id="prog"
 						value="#{mbStudent.selectedStudent.program.programId}">
 						<f:selectItem itemLabel="Select One" itemValue="" />
-						<f:selectItems value="#{mbStudent.studentTable}" var="p"
-							itemLabel="#{p.program.programEName}"
-							itemValue="#{p.program.programId}" />
+						<f:selectItems value="#{mbStudent.programTable}" var="p"
+							itemLabel="#{p.programEName}"
+							itemValue="#{p.programId}" />
 					</p:selectOneMenu>
 
 					<p:outputLabel value="Final Average" />
@@ -134,13 +151,13 @@
 					<p:inputText value="#{mbStudent.selectedStudent.maxAverage}" />
 
 					<p:outputLabel value="Rate" />
-					<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
+					<p:inputText value="#{mbStudent.selectedStudent.rate}" />
 
 					<p:outputLabel value="Graduate Year" />
-					<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
+					<p:inputText value="#{mbStudent.selectedStudent.graduateYear}" />
 
 					<p:outputLabel value="Graduate Semester" />
-					<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
+					<p:inputText value="#{mbStudent.selectedStudent.graduateSemester}" />
 
 					<p:commandButton value="Edit" action="#{mbStudent.updateStudent()}"
 						ajax="false" />
@@ -158,22 +175,11 @@
 				<p:panel id="expandPnl">
 				
 					<p:dataTable value="#{mbStudent.studentTable}" var="s">
-						<p:column headerText="Email" sortBy="#{s.email}">
-							<h:outputText value="#{s.email}" />
-						</p:column>
-
-						<p:column headerText="University"
-							sortBy="#{s.university.universityId}">
-							<h:outputText value="#{s.university.universityId}" />
-						</p:column>
-
-						<p:column headerText="School" sortBy="#{s.school.schoolId}">
-							<h:outputText value="#{s.school.schoolId}" />
-						</p:column>
-
-						<p:column headerText="Program" sortBy="#{s.program.programId}">
-							<h:outputText value="#{s.program.programId}" />
-						</p:column>
+					
+					<p:column headerText="English Name" sortBy="#{s.studentEName}">
+						<h:outputText value="#{s.studentEName}" />
+					</p:column>
+						
 
 						<p:column headerText="Final Average" sortBy="#{s.finalAverage}">
 							<h:outputText value="#{s.finalAverage}" />

@@ -126,16 +126,39 @@ public class StudentDAO {
 	return student;
 
     }
+    
+    public int selectMaxId(Connection connection) {
+	try {
+	    db = new Database();
+	    connection = db.getConnection();
+	    ps = connection.prepareStatement(
+		    "select nvl(max(student_id),0) AS student_id from student");
+	    
+	    rs = ps.executeQuery();
+
+	    if (rs.next()) {
+		return rs.getInt("student_id");
+	    }
+
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	} finally {
+	    Database.close(rs);
+	   
+	}
+	return 0;
+    }
 
     public int insert(Student student) {
 
 	try {
 	    db = new Database();
 	    connection = db.getConnection();
+	    int maxId = selectMaxId(connection);
 	    ps = connection.prepareStatement(
 		    "insert into student (student_id, student_ename, student_aname, mobile, birthdate, sex, email, final_average, max_Average, rate, graduate_year, graduate_sem , university_id, school_id, program_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	    int counter = 1;
-	    ps.setInt(counter++, student.getStudentId());
+	    ps.setInt(counter++, maxId + 1);
 	    ps.setString(counter++, student.getStudentEName());
 	    ps.setString(counter++, student.getStudentAName());
 	    ps.setString(counter++, student.getMobile());
@@ -170,7 +193,7 @@ public class StudentDAO {
 	    db = new Database();
 	    connection = db.getConnection();
 	    ps = connection.prepareStatement(
-		    "update student set student_id = ?, student_ename = ?, student_aname = ?, mobile = ?, birthdate = ?, sex = ?, email = ?, university_id = ?, school_id = ?, program_id = ?, final_average = ?, max_Average = ?, rate = ?, graduate_year = ?, graduate_sem = ? where student_id = ?");
+		    "update student set  student_ename = ?, student_aname = ?, mobile = ?, birthdate = ?, sex = ?, email = ?, university_id = ?, school_id = ?, program_id = ?, final_average = ?, max_Average = ?, rate = ?, graduate_year = ?, graduate_sem = ? where student_id = ?");
 
 	    int counter = 1;
 	    ps.setString(counter++, student.getStudentEName());

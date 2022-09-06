@@ -23,30 +23,30 @@ public class MBAddStudent {
     private List<University> universityTable;
     private List<School> schoolTable;
     private List<Program> programTable;
-    private StudentDAO studentDAO;
+   
     
     @PostConstruct
     public void init() {
-	studentDAO = new StudentDAO();
+	student = new Student();
 	
 	UniversityDAO universityDAO = new UniversityDAO();
 	universityTable = universityDAO.selectAll();
-	
+	student.setUniversity(new University());
 	
 	SchoolDAO schoolDAO = new SchoolDAO();
 	schoolTable = schoolDAO.selectAll();
-	
+	student.setSchool(new School());
 	
 	ProgramDAO programDAO = new ProgramDAO();
 	programTable = programDAO.selectAll();
-	
+	student.setProgram(new Program());
 	
 	
     }
     
     
     public String add() {
-	
+	StudentDAO studentDAO = new StudentDAO();
 	studentDAO.insert(student);
 	
 	Message.addMessage("INFO", "added", "added successfully");
@@ -58,15 +58,19 @@ public class MBAddStudent {
     }
     
     public Student getStudent() {
-	if (student == null) {
-	    student = new Student();
-	    student.setUniversity(new University());
-	    student.setSchool(new School());
-	    student.setProgram(new Program());
-		return null;
-	}
 	return student;
     }
+    
+//    public Student getStudent() {
+//	if (student == null) {
+//	    student = new Student();
+//	    student.setUniversity(new University());
+//	    student.setSchool(new School());
+//	    student.setProgram(new Program());
+//		return null;
+//	}
+//	return student;
+//    }
 
     public void setStudent(Student student) {
 	this.student = student;

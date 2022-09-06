@@ -3,6 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="/WEB-INF/template/template.xhtml">
 
 
@@ -25,12 +26,16 @@
 						</p:column>
 						
 						<p:column headerText="Interview Date" sortBy="#{i.interviewDate}">
-						<h:outputText value="#{i.interviewDate}"/>
+						<h:outputText value="#{i.interviewDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
 						</p:column>
 						
 						
 						<p:column headerText="Interview Time" sortBy="#{i.interviewTime}">
-						<h:outputText value="#{i.interviewTime}"/>
+						<h:outputText value="#{i.interviewTime}">  
+						<f:convertDateTime pattern="hh:mm"/>
+						</h:outputText>
 						</p:column>
 						
 						<p:column headerText="Duration" sortBy="#{i.duration}">
@@ -66,7 +71,7 @@
 			<p:calendar value="#{mbInterview.selectedInterview.interviewDate}"/>
 			
 			<p:outputLabel value="Interview Time"/>
-			<p:calendar value="#{mbInterview.selectedInterview.interviewTime}"/>
+			<pe:timePicker value="#{mbInterview.selectedInterview.interviewTime}" mode="popup"/>
 			
 			<p:outputLabel value="Duration"/>
 			<p:inputNumber value="#{mbInterview.selectedInterview.duration}"/>

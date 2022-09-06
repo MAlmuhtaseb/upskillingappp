@@ -19,11 +19,14 @@ public class MBAddInterview {
     
     @PostConstruct
     public void init() {
+	interview = new Interview();
 	StudentDAO studentDAO = new StudentDAO();
 	studentTable = studentDAO.selectAll();
+	interview.setStudent(new Student());
     }
     
     public String add() {
+	
 	InterviewDAO interviewDAO = new InterviewDAO();
 	interviewDAO.insert(interview);
 	
@@ -33,14 +36,18 @@ public class MBAddInterview {
 	return null;
     }
 
-
+    
     public Interview getInterview() {
-        if (interview == null) {
-	    interview = new Interview();
-	    interview.setStudent(new Student());
-	}
-        return null;
+	return interview;
     }
+
+//    public Interview getInterview() {
+//        if (interview == null) {
+//	    interview = new Interview();
+//	    interview.setStudent(new Student());
+//	}
+//        return null;
+//    }
 
 
     public void setInterview(Interview interview) {
