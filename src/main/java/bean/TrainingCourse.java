@@ -13,11 +13,11 @@ public class TrainingCourse{
     }
 
 
-    public TrainingCourse(int courseId, int maxStudents, String courseAName, String courseEName, String shortDesc, String detailedDesc) {
+    public TrainingCourse(int courseId, int maxStudents, String courseEName, String courseAName, String shortDesc, String detailedDesc) {
         this.courseId = courseId;
         this.maxStudents = maxStudents;
-        this.courseAName = courseAName;
         this.courseEName = courseEName;
+        this.courseAName = courseAName;
         this.shortDesc = shortDesc;
         this.detailedDesc = detailedDesc;
     }

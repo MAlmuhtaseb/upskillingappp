@@ -18,69 +18,86 @@
 
 					<f:facet name="header">
 						<h:outputText
-							value="Interviews (#{mbInterview.interviewTable.size()})" />
+							value="#{msg.lbl_interviews} (#{mbInterview.interviewTable.size()})" />
 					</f:facet>
-	
-						<p:column headerText="Student Name" sortBy="#{i.student.studentEName}">
-						<h:outputText value="#{i.student.studentEName}"/>
-						</p:column>
-						
-						<p:column headerText="Interview Date" sortBy="#{i.interviewDate}">
-						<h:outputText value="#{i.interviewDate}">
-						<f:convertDateTime pattern="dd/MM/yyyy"/>
-						</h:outputText>
-						</p:column>
-						
-						
-						<p:column headerText="Interview Time" sortBy="#{i.interviewTime}">
-						<h:outputText value="#{i.interviewTime}">  
-						<f:convertDateTime pattern="hh:mm"/>
-						</h:outputText>
-						</p:column>
-						
-						<p:column headerText="Duration" sortBy="#{i.duration}">
-						<h:outputText value="#{i.duration} minutes"/>
-						</p:column>
 
-						<p:column headerText="Edit">
-						<p:commandButton value="..." update=":form:editPnl" process="@this" onclick="PF('interviewEditDlg').show()">
-						<f:setPropertyActionListener value="#{i}" target="#{mbInterview.selectedInterview}" />
+					<p:column headerText="#{msg.lbl_student_name}"
+						sortBy="#{i.student.studentEName}">
+						<h:outputText
+							value="#{mbSec.lang.equals('en') ? i.student.studentEName : i.student.studentAName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_interview_date}"
+						sortBy="#{i.interviewDate}">
+						<h:outputText value="#{i.interviewDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+
+
+					<p:column headerText="#{msg.lbl_interview_time}"
+						sortBy="#{i.interviewTime}">
+						<h:outputText value="#{i.interviewTime}">
+							<f:convertDateTime pattern="hh:mm" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_duration}" sortBy="#{i.duration}">
+						<h:outputText value="#{i.duration}" />
+					</p:column>
+
+					<p:column headerText="#{msg.btn_edit}">
+						<p:commandButton value="..." update=":form:editPnl"
+							process="@this" onclick="PF('interviewEditDlg').show()">
+							<f:setPropertyActionListener value="#{i}"
+								target="#{mbInterview.selectedInterview}" />
 						</p:commandButton>
-						</p:column>
-						
-						<p:column headerText="Delete">
-						<p:commandButton value="X"  action="#{mbInterview.removeInterview()}" ajax="false">
-						<f:setPropertyActionListener value="#{i}" target="#{mbInterview.selectedInterview}" />
+					</p:column>
+
+					<p:column headerText="#{msg.btn_delete}">
+						<p:commandButton value="X"
+							action="#{mbInterview.removeInterview()}" ajax="false">
+							<f:setPropertyActionListener value="#{i}"
+								target="#{mbInterview.selectedInterview}" />
 						</p:commandButton>
-						</p:column>
+					</p:column>
 
 				</p:dataTable>
 
 			</p:panel>
-			
-			<p:dialog header="Edit Interview" widgetVar="interviewEditDlg" modal="true">
-			<p:panelGrid id="editPnl" columns="2">
-			
-			<p:outputLabel value="Student Name" for="studentList"/>
-			<p:selectOneMenu id="studentList" value="#{mbInterview.selectedInterview.student.studentId}" filter="true">
-			<f:selectItem itemLabel="Select Student" itemValue=""/>
-			<f:selectItems value="#{mbInterview.studentTable}" var="s" itemLabel="#{s.studentEName}" itemValue="#{s.studentId}"/>
-			</p:selectOneMenu>
-			
-			<p:outputLabel value="Interview Date"/>
-			<p:calendar value="#{mbInterview.selectedInterview.interviewDate}"/>
-			
-			<p:outputLabel value="Interview Time"/>
-			<pe:timePicker value="#{mbInterview.selectedInterview.interviewTime}" mode="popup"/>
-			
-			<p:outputLabel value="Duration"/>
-			<p:inputNumber value="#{mbInterview.selectedInterview.duration}"/>
-			
-			<p:commandButton value="Edit" action="#{mbInterview.updateInterview()}" ajax="false"/>
-			<p:commandButton value="Close" type="button" onclick="PF('interviewEditDlg').hide()"/>
-			
-			</p:panelGrid>
-			
+
+			<p:dialog header="#{msg.lbl_edit_interview}"
+				widgetVar="interviewEditDlg" modal="true">
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_student_name}" for="studentList" />
+					<p:selectOneMenu id="studentList"
+						value="#{mbInterview.selectedInterview.student.studentId}"
+						filter="true">
+						<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
+						<f:selectItems value="#{mbInterview.studentTable}" var="s"
+							itemLabel="#{mbSec.lang.equals('en') ? s.studentEName : s.studentAName}"
+							itemValue="#{s.studentId}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_interview_date}" />
+					<p:calendar value="#{mbInterview.selectedInterview.interviewDate}" />
+
+					<p:outputLabel value="#{msg.lbl_interview_time}" />
+					<pe:timePicker
+						value="#{mbInterview.selectedInterview.interviewTime}"
+						mode="popup" />
+
+					<p:outputLabel value="#{msg.lbl_duration}" />
+					<p:inputNumber value="#{mbInterview.selectedInterview.duration}" />
+
+					<p:commandButton value="#{msg.btn_edit}"
+						action="#{mbInterview.updateInterview()}" ajax="false" />
+					<p:commandButton value="#{msg.btn_close}" type="button"
+						onclick="PF('interviewEditDlg').hide()" />
+
+				</p:panelGrid>
+
 			</p:dialog>
 
 

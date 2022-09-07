@@ -17,34 +17,34 @@
 	<p:dataTable value="#{mbStudentResult.studentResultTable}" var="r">
 	
 	<f:facet name="header">
-	<h:outputText value="Student Results (#{mbStudentResult.studentResultTable.size()})" />
+	<h:outputText value="#{msg.lbl_student_results} (#{mbStudentResult.studentResultTable.size()})" />
 	</f:facet>
 	
-	<p:column headerText="Student Name" sortBy="#{r.student.studentEName}">
-	<h:outputText value="#{r.student.studentEName}"/>
+	<p:column headerText="#{msg.lbl_student_name}" sortBy="#{r.student.studentEName}">
+	<h:outputText value="#{mbSec.lang.equals('en') ? r.student.studentEName: r.student.studentAName}"/>
 	</p:column>
 	
-	<p:column headerText="Course Name" sortBy="#{r.trainingCourse.courseEName}">
-	<h:outputText value="#{r.trainingCourse.courseEName}"/>
+	<p:column headerText="#{msg.lbl_course_name}" sortBy="#{r.trainingCourse.courseEName}">
+	<h:outputText value="#{mbSec.lang.equals('en') ? r.trainingCourse.courseEName : r.trainingCourse.courseAName}"/>
 	</p:column>
 	
-	<p:column headerText="English Mark" sortBy="#{r.englishMark}">
+	<p:column headerText="#{msg.lbl_eng_mark}" sortBy="#{r.englishMark}">
 	<h:outputText value="#{r.englishMark}"/>
 	</p:column>
 	
-	<p:column headerText="Interview Mark" sortBy="#{r.interviewMark}">
+	<p:column headerText="#{msg.lbl_interview_mark}" sortBy="#{r.interviewMark}">
 	<h:outputText value="#{r.interviewMark}" />
 	</p:column>
 	
-	<p:column headerText="Accepted Flag" sortBy="#{mbStudentResult.flagText[r.acceptedFlag]}">
+	<p:column headerText="#{msg.lbl_accepted_flag}" sortBy="#{mbStudentResult.flagText[r.acceptedFlag]}">
 	<h:outputText value="#{mbStudentResult.flagText[r.acceptedFlag]}"/>
 	</p:column>
 	
-	<p:column headerText="Notes" sortBy="#{r.notes}">
+	<p:column headerText="#{msg.lbl_notes}" sortBy="#{r.notes}">
 	<h:outputText value="#{r.notes}"/>
 	</p:column>
 	
-	<p:column headerText="Edit">
+	<p:column headerText="#{msg.btn_edit}">
 					<p:commandButton value="..." update=":form:editPnl"
 						process="@this" onclick="PF('resultEditDlg').show()">
 						<f:setPropertyActionListener value="#{r}"
@@ -52,7 +52,7 @@
 					</p:commandButton>
 				</p:column>
 
-				<p:column headerText="Delete">
+				<p:column headerText="#{msg.btn_delete}">
 					<p:commandButton value="X"
 						action="#{mbStudentResult.removeStudentResult()}" ajax="false">
 						<f:setPropertyActionListener value="#{r}"
@@ -64,38 +64,38 @@
 	
 	</p:panel>
 	
-	<p:dialog header="Edit Result" widgetVar="resultEditDlg" modal="true">
+	<p:dialog header="#{msg.lbl_edit_result}" widgetVar="resultEditDlg" modal="true">
 	
 	<p:panelGrid id="editPnl" columns="2">
 	
-	<p:outputLabel value="Student Name"/>
+	<p:outputLabel value="#{msg.lbl_student_name}"/>
 	<h:outputText value="#{mbStudentResult.selectedStudentResult.student.studentEName}" />
 	
-	<p:outputLabel value="Course Name" for="courseSelect" />
+	<p:outputLabel value="#{msg.lbl_course_name}" for="courseSelect" />
 				<p:selectOneMenu id="courseSelect"
 					value="#{mbStudentResult.selectedStudentResult.trainingCourse.courseId}">
-					<f:selectItem itemLabel="Select Course" itemValue="" />
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
 					<f:selectItems value="#{mbTrainingCourse.trainingCourseTable}"
-						var="c" itemLabel="#{c.courseEName}" itemValue="#{c.courseId}" />
+						var="c" itemLabel="#{mbSec.lang.equals('en') ? c.courseEName : c.courseAName}" itemValue="#{c.courseId}" />
 				</p:selectOneMenu>
 	
-	<p:outputLabel value="English Mark"/>
+	<p:outputLabel value="#{msg.lbl_eng_mark}"/>
 	<p:inputNumber value="#{mbStudentResult.selectedStudentResult.englishMark}"/>
 	
-	<p:outputLabel value="InterviewMark"/>
+	<p:outputLabel value="#{msg.lbl_interview_mark}"/>
 	<p:inputNumber value="#{mbStudentResult.selectedStudentResult.interviewMark}"/>
 	
-	<p:outputLabel value="Accepted Flag"/>
+	<p:outputLabel value="#{msg.lbl_accepted_flag}"/>
 	<p:selectOneRadio value="#{mbStudentResult.selectedStudentResult.acceptedFlag}">
 	<f:selectItem itemLabel="Accepted" itemValue="1"/>
 	<f:selectItem itemLabel="Declined" itemValue="0"/>
 	</p:selectOneRadio>
 	
-	<p:outputLabel value="Notes"/>
+	<p:outputLabel value="#{msg.lbl_notes}"/>
 	<p:inputTextarea value="#{mbStudentResult.selectedStudentResult.notes}"/>
 	
-	<p:commandButton value="Edit" action="#{mbStudentResult.updateStudentResult()}" ajax="false"/>
-	<p:commandButton value="Close" type="button" onclick="PF('resultEditDlg').hide()"/>
+	<p:commandButton value="#{msg.btn_edit}" action="#{mbStudentResult.updateStudentResult()}" ajax="false"/>
+	<p:commandButton value="#{msg.btn_close}" type="button" onclick="PF('resultEditDlg').hide()"/>
 	</p:panelGrid>
 	
 	</p:dialog>

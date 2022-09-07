@@ -20,22 +20,24 @@
 				
 				<p:inputText value="#{mbAddProgram.program.programId}" /> -->	
 
-				<p:outputLabel value="School Name" for="schoolAdd" />
+				<p:outputLabel value="#{msg.lbl_school_name}" for="schoolAdd" />
 				<p:selectOneMenu id="schoolAdd"
 					value="#{mbAddProgram.program.school.schoolId}">
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue=""/>
 					<f:selectItems value="#{mbAddProgram.schoolTable}" var="s"
-						itemLabel="#{s.schoolEName}" itemValue="#{s.schoolId}" />
+						itemLabel="#{mbSec.lang.equals('en') ? s.schoolEName : s.schoolAName}" itemValue="#{s.schoolId}" />
 
 				</p:selectOneMenu>
 
-				<p:outputLabel value="Program English Name" />
+
+				<p:outputLabel value="#{msg.lbl_eng_name}" />
 				<p:inputText value="#{mbAddProgram.program.programEName}" />
 
-				<p:outputLabel value="Program Arabic Name" />
+				<p:outputLabel value="#{msg.lbl_ar_name}" />
 				<p:inputText value="#{mbAddProgram.program.programAName}" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Add" action="#{mbAddProgram.add()}"
+					<p:commandButton value="#{msg.btn_add}" action="#{mbAddProgram.add()}"
 						ajax="false" />
 
 				</f:facet>

@@ -13,46 +13,44 @@
 		<h:form id="form">
 
 			<p:panelGrid columns="2">
-				<f:facet name="header">
-					<h:outputText value="Add Courses" />
-				</f:facet>
+				
 
 
 
-				<p:outputLabel value="Course English Name" for="eName" />
+				<p:outputLabel value="#{msg.lbl_eng_name}" for="eName" />
 				<p:inputText id="eName"
 					value="#{mbAddTrainingCourse.trainingCourse.courseEName}"
 					required="true" requiredMessage="enter" maxlength="30"
 					validatorMessage="Please check name" />
 
-				<p:outputLabel value="Course Arabic Name" for="aName" />
+				<p:outputLabel value="#{msg.lbl_ar_name}" for="aName" />
 				<p:inputText id="aName"
 					value="#{mbAddTrainingCourse.trainingCourse.courseAName}"
 					required="true" requiredMessage="enter" maxlength="30"
 					validatorMessage="Please check name" />
 
 
-				<p:outputLabel value="Max Students" for="max" />
+				<p:outputLabel value="#{msg.lbl_max_student}" for="max" />
 				<p:inputNumber id="max"
 					value="#{mbAddTrainingCourse.trainingCourse.maxStudents}"
 					decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
 					required="true" requiredMessage="max" />
 
 
-				<p:outputLabel value="Short Description" for="sdesc" />
-				<p:inputText id="sdesc"
+				<p:outputLabel value="#{msg.lbl_short_desc}" for="sdesc" />
+				<p:inputTextarea id="sdesc"
 					value="#{mbAddTrainingCourse.trainingCourse.shortDesc}"
 					required="true" requiredMessage="enter" maxlength="2000"
 					validatorMessage="Please check msg" />
 
-				<p:outputLabel value="Detailed Description" for="ddesc" />
-				<p:inputText id="ddesc"
+				<p:outputLabel value="#{msg.lbl_detailed_desc}" for="ddesc" />
+				<p:inputTextarea id="ddesc"
 					value="#{mbAddTrainingCourse.trainingCourse.detailedDesc}"
 					required="true" requiredMessage="enter" maxlength="5000"
 					validatorMessage="Please check msg" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Add" action="#{mbAddTrainingCourse.add()}"
+					<p:commandButton value="#{msg.btn_add}" action="#{mbAddTrainingCourse.add()}"
 						ajax="false" />
 				</f:facet>
 

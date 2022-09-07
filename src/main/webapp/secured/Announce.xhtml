@@ -12,15 +12,15 @@
 	
 	<h:form id="form">
 	<p:panelGrid columns="2">
-	<p:outputLabel value="Title"/>
+	<p:outputLabel value="#{msg.lbl_title}"/>
 	<p:inputText value="#{mbEmail.title}"/>
 	
-	<p:outputLabel value="Content"/>
+	<p:outputLabel value="#{msg.lbl_content}"/>
 	<p:inputTextarea value="#{mbEmail.content}"/>
 	
 	<f:facet name="footer">
 	
-	<p:commandButton value="send" action="#{mbEmail.sendEmail()}"/>
+	<p:commandButton value="#{msg.btn_send}" action="#{mbEmail.sendEmail()}"/>
 	</f:facet>
 	</p:panelGrid>
 	

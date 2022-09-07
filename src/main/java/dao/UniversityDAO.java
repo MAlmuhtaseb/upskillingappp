@@ -26,12 +26,12 @@ public class UniversityDAO {
 	    db = new Database();
 	    connection = db.getConnection();
 	    ps = connection.prepareStatement(
-		    "select university_id, university_aname, university_ename, website from university order by university_id");
+		    "select university_id, university_ename, university_aname, website from university order by university_id");
 	    rs = ps.executeQuery();
 
 	    while (rs.next()) {
-		University university = new University(rs.getInt("university_id"), rs.getString("university_aname"),
-			rs.getString("university_ename"), rs.getString("website"));
+		University university = new University(rs.getInt("university_id"), rs.getString("university_ename"),
+			rs.getString("university_aname"), rs.getString("website"));
 		universityTable.add(university);
 	    }
 
@@ -54,13 +54,13 @@ public class UniversityDAO {
 	    db = new Database();
 	    connection = db.getConnection();
 	    ps = connection.prepareStatement(
-		    "select university_id, university_aname, university_ename, website from university where university_id = ?");
+		    "select university_id, university_ename, university_aname, website from university where university_id = ?");
 	    ps.setInt(1, id);
 	    rs = ps.executeQuery();
 
 	    if (rs.next()) {
-		university = new University(rs.getInt("university_id"), rs.getString("university_aname"),
-			rs.getString("university_ename"), rs.getString("website"));
+		university = new University(rs.getInt("university_id"), rs.getString("university_ename"),
+			rs.getString("university_aname"), rs.getString("website"));
 
 	    }
 
@@ -105,12 +105,12 @@ public class UniversityDAO {
 	    connection = db.getConnection();
 	    int maxId = selectMaxId(connection);
 	    ps = connection.prepareStatement(
-		    "insert into university(university_id, university_aname, university_ename, website) values(?, ?, ?, ?)");
+		    "insert into university(university_id, university_ename, university_aname, website) values(?, ?, ?, ?)");
 
 	    int counter = 1;
 	    ps.setInt(counter++, maxId + 1);
-	    ps.setString(counter++, university.getUniversityAName());
 	    ps.setString(counter++, university.getUniversityEName());
+	    ps.setString(counter++, university.getUniversityAName());
 	    ps.setString(counter++, university.getWebsite());
 
 	    row = ps.executeUpdate();
@@ -132,11 +132,11 @@ public class UniversityDAO {
 	    db = new Database();
 	    connection = db.getConnection();
 	    ps = connection.prepareStatement(
-		    "update university set university_aname = ?, university_ename = ?, website = ? where university_id = ?");
+		    "update university set university_ename = ?, university_aname = ?, website = ? where university_id = ?");
 
 	    int counter = 1;
-	    ps.setString(counter++, university.getUniversityAName());
 	    ps.setString(counter++, university.getUniversityEName());
+	    ps.setString(counter++, university.getUniversityAName());
 	    ps.setString(counter++, university.getWebsite());
 	    ps.setInt(counter++, university.getUniversityId());
 

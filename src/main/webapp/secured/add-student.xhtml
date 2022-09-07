@@ -14,71 +14,71 @@
 
 			<p:panelGrid columns="2">
 
-				<p:outputLabel value="English Name" />
+				<p:outputLabel value="#{msg.lbl_eng_name}" />
 				<p:inputText value="#{mbAddStudent.student.studentEName}" />
 
-				<p:outputLabel value="Arabic Name" />
+				<p:outputLabel value="#{msg.lbl_ar_name}" />
 				<p:inputText value="#{mbAddStudent.student.studentAName}" />
 
 
-				<p:outputLabel value="Mobile" />
-				<p:inputNumber value="#{mbAddStudent.student.mobile}" />
+				<p:outputLabel value="#{msg.lbl_mobile}" />
+				<p:inputText value="#{mbAddStudent.student.mobile}" />
 
-				<p:outputLabel value="Birth date" />
+				<p:outputLabel value="#{msg.lbl_birth_date}" />
 				<p:calendar value="#{mbAddStudent.student.birthDate}" />
 
-				<p:outputLabel value="Gender" for="gender" />
+				<p:outputLabel value="#{msg.lbl_gender}" for="gender" />
 				<p:selectOneRadio id="gender" value="#{mbAddStudent.student.gender}">
 					<f:selectItem itemLabel="Male" itemValue="1" />
 					<f:selectItem itemLabel="Female" itemValue="2" />
 				</p:selectOneRadio>
 
-				<p:outputLabel value="Email" />
+				<p:outputLabel value="#{msg.lbl_email}" />
 				<p:inputText value="#{mbAddStudent.student.email}" />
 
-				<p:outputLabel value="University Name" for="uni" />
+				<p:outputLabel value="#{msg.lbl_uni_name}" for="uni" />
 				<p:selectOneMenu id="uni"
 					value="#{mbAddStudent.student.university.universityId}">
-					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
 					<f:selectItems value="#{mbAddStudent.universityTable}" var="u"
-						itemLabel="#{u.universityEName}" itemValue="#{u.universityId}" />
+						itemLabel="#{mbSec.lang.equals('en') ? u.universityEName : u.universityAName}" itemValue="#{u.universityId}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="School Name" for="school" />
+				<p:outputLabel value="#{msg.lbl_school_name}" for="school" />
 				<p:selectOneMenu id="school"
 					value="#{mbAddStudent.student.school.schoolId}">
-					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
 					<f:selectItems value="#{mbAddStudent.schoolTable}" var="s"
-						itemLabel="#{s.schoolEName}" itemValue="#{s.schoolId}" />
+						itemLabel="#{mbSec.lang.equals('en') ? s.schoolEName : s.schoolAName}" itemValue="#{s.schoolId}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="Program Name" for="prog" />
+				<p:outputLabel value="#{msg.lbl_program_name}" for="prog" />
 				<p:selectOneMenu id="prog"
 					value="#{mbAddStudent.student.program.programId}">
-					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
 					<f:selectItems value="#{mbAddStudent.programTable}" var="p"
-						itemLabel="#{p.programEName}" itemValue="#{p.programId}" />
+						itemLabel="#{mbSec.lang.equals('en') ? p.programEName : p.programAName}" itemValue="#{p.programId}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="Final Average" />
+				<p:outputLabel value="#{msg.lbl_final_avg}" />
 				<p:inputText value="#{mbAddStudent.student.finalAverage}" />
 
-				<p:outputLabel value="Maximum Average" />
+				<p:outputLabel value="#{msg.lbl_max_avg}"/>
 				<p:inputText value="#{mbAddStudent.student.maxAverage}" />
 
-				<p:outputLabel value="Rate" />
+				<p:outputLabel value="#{msg.lbl_rate}" />
 				<p:inputText value="#{mbAddStudent.student.rate}" />
 
-				<p:outputLabel value="Graduate Year" />
+				<p:outputLabel value="#{msg.lbl_grad_year}" />
 				<p:inputText value="#{mbAddStudent.student.graduateYear}" />
 
-				<p:outputLabel value="Graduate Semester" />
+				<p:outputLabel value="#{msg.lbl_grad_sem}" />
 				<p:inputText value="#{mbAddStudent.student.graduateSemester}" />
 
 
 
 				<f:facet name="footer">
-					<p:commandButton value="Add" action="#{mbAddStudent.add()}"
+					<p:commandButton value="#{msg.btn_add}" action="#{mbAddStudent.add()}"
 						ajax="false" />
 				</f:facet>
 

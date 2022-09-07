@@ -14,44 +14,44 @@
 
 			<p:panelGrid columns="2">
 
-				<p:outputLabel value="Student Name" for="stdSelect" />
+				<p:outputLabel value="#{msg.lbl_student_name}" for="stdSelect" />
 				<p:selectOneMenu id="stdSelect"
 					value="#{mbAddStudentResult.studentResult.student.studentId}">
-					<f:selectItem itemLabel="Select Student" itemValue="" />
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
 					<f:selectItems value="#{mbStudent.studentTable}" var="s"
-						itemLabel="#{s.studentEName}" itemValue="#{s.studentId}" />
+						itemLabel="#{mbSec.lang.equals('en') ? s.studentEName : s.studentAName}" itemValue="#{s.studentId}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="Course Name" for="courseSelect" />
+				<p:outputLabel value="#{msg.lbl_course_name}" for="courseSelect" />
 				<p:selectOneMenu id="courseSelect"
 					value="#{mbAddStudentResult.studentResult.trainingCourse.courseId}">
-					<f:selectItem itemLabel="Select Course" itemValue="" />
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
 					<f:selectItems value="#{mbTrainingCourse.trainingCourseTable}"
-						var="c" itemLabel="#{c.courseEName}" itemValue="#{c.courseId}" />
+						var="c" itemLabel="#{mbSec.lang.equals('en') ? c.courseEName : c.courseAName}" itemValue="#{c.courseId}" />
 				</p:selectOneMenu>
 
-				<p:outputLabel value="English Mark" />
+				<p:outputLabel value="#{msg.lbl_eng_mark}" />
 				<p:inputNumber
 					value="#{mbAddStudentResult.studentResult.englishMark}" />
 
 
-				<p:outputLabel value="Interview Mark" />
+				<p:outputLabel value="#{msg.lbl_interview_mark}" />
 				<p:inputNumber
 					value="#{mbAddStudentResult.studentResult.interviewMark}" />
 
-				<p:outputLabel value="Accepted Flag" />
+				<p:outputLabel value="#{msg.lbl_accepted_flag}" />
 				<p:selectOneRadio
 					value="#{mbAddStudentResult.studentResult.acceptedFlag}">
 					<f:selectItem itemLabel="Accepted" itemValue="1" />
 					<f:selectItem itemLabel="Declined" itemValue="0" />
 				</p:selectOneRadio>
 
-				<p:outputLabel value="Notes" />
+				<p:outputLabel value="#{msg.lbl_notes}" />
 				<p:inputTextarea value="#{mbAddStudentResult.studentResult.notes}" />
 
 
 				<f:facet name="footer">
-					<p:commandButton value="Add" action="#{mbAddStudentResult.add()}"
+					<p:commandButton value="#{msg.btn_add}" action="#{mbAddStudentResult.add()}"
 						ajax="false" />
 				</f:facet>
 

@@ -8,35 +8,44 @@
 		<h:form id="menuForm">
 		<p:menubar>
 		
-		<p:menuitem value="Home" outcome="/home.xhtml"/>
+		<p:menuitem value="#{msg.menu_home}" outcome="/home.xhtml"/>
 		
-		<p:submenu label="Tables">
-		<p:menuitem value="University" outcome="/secured/university.xhtml"/>
-		<p:menuitem value="Program" outcome="/secured/program.xhtml"/>
-		<p:menuitem value="School" outcome="/secured/school.xhtml"/>
-		<p:menuitem value="Student" outcome="/secured/student.xhtml"/>
-		<p:menuitem value="Student Result" outcome="/secured/student-result.xhtml"/>
-		<p:menuitem value="Training Course" outcome="/secured/training-course.xhtml"/>
-		<p:menuitem value="Student Training Course" outcome="/secured/student-training-course.xhtml"/>
-		<p:menuitem value="Interview" outcome="/secured/interview.xhtml"/>
+		<p:submenu label="#{msg.menu_tables}">
+		<p:menuitem value="#{msg.menu_uni}" outcome="/secured/university.xhtml"/>
+		<p:menuitem value="#{msg.menu_program}" outcome="/secured/program.xhtml"/>
+		<p:menuitem value="#{msg.menu_school}" outcome="/secured/school.xhtml"/>
+		<p:menuitem value="#{msg.menu_student}" outcome="/secured/student.xhtml"/>
+		<p:menuitem value="#{msg.menu_student_result}" outcome="/secured/student-result.xhtml"/>
+		<p:menuitem value="#{msg.menu_training_course}" outcome="/secured/training-course.xhtml"/>
+		<p:menuitem value="#{msg.menu_student_training_course}" outcome="/secured/student-training-course.xhtml"/>
+		<p:menuitem value="#{msg.menu_interview}" outcome="/secured/interview.xhtml"/>
 				
 		</p:submenu>
 		
-		<p:submenu label="Tables">
-		<p:menuitem value="Add University" outcome="/secured/add-university.xhtml"/>
-		<p:menuitem value="Add Program" outcome="/secured/add-program.xhtml"/>
-		<p:menuitem value="Add School" outcome="/secured/add-school.xhtml"/>
-		<p:menuitem value="Add Student" outcome="/secured/add-student.xhtml"/>
-		<p:menuitem value="Add Student Result" outcome="/secured/add-student-result.xhtml"/>
-		<p:menuitem value="Add Training Course" outcome="/secured/add-training-course.xhtml"/>
-		<p:menuitem value="Add Student Training Course" outcome="/secured/add-student-training-course.xhtml"/>
-		<p:menuitem value="Add Interview" outcome="/secured/add-interview.xhtml"/>
+		<p:submenu label="#{msg.menu_add_tables}">
+		<p:menuitem value="#{msg.menu_add_uni}" outcome="/secured/add-university.xhtml"/>
+		<p:menuitem value="#{msg.menu_add_program}" outcome="/secured/add-program.xhtml"/>
+		<p:menuitem value="#{msg.menu_add_school}" outcome="/secured/add-school.xhtml"/>
+		<p:menuitem value="#{msg.menu_add_student}" outcome="/secured/add-student.xhtml"/>
+		<p:menuitem value="#{msg.menu_add_student_result}" outcome="/secured/add-student-result.xhtml"/>
+		<p:menuitem value="#{msg.menu_add_training_course}" outcome="/secured/add-training-course.xhtml"/>
+		<p:menuitem value="#{msg.menu_add_student_training_course}" outcome="/secured/add-student-training-course.xhtml"/>
+		<p:menuitem value="#{msg.menu_add_interview}" outcome="/secured/add-interview.xhtml"/>
 		
 		
 		</p:submenu>
-		<p:menuitem value="Announce" outcome="/secured/Announce.xhtml"/>
+		<p:menuitem value="#{msg.menu_announce}" outcome="/secured/Announce.xhtml"/>
 		
-		<p:menuitem value="Logout" action="#{mbSec.logout()}" ajax="false"/>
+		<p:menuitem >
+		<p:selectOneMenu value="#{mbSec.lang}" onchange="submit()"
+						valueChangeListener="#{mbSec.localeChanged}">
+						<f:selectItems value="#{mbSec.countries}" />
+					</p:selectOneMenu>
+		</p:menuitem>
+		
+		<p:menuitem value="#{msg.btn_logout}" action="#{mbSec.logout()}" />
+		
+		
 		
 		
 		

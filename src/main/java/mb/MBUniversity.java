@@ -36,6 +36,10 @@ public class MBUniversity {
 	universityTable = universityDAO.selectAll();
 	return null;
     }
+    
+    public String redirect() {
+	return "#{u.website}";
+    }
 
     public List<University> getUniversityTable() {
 	return universityTable;

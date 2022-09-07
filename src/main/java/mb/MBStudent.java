@@ -50,6 +50,7 @@ public class MBStudent {
     
     public MBStudent() {
    	genderText = new HashMap<Integer, String>();
+   	
    	genderText.put(1, "Male");
    	genderText.put(2, "Female");
        }

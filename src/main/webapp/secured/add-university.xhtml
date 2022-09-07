@@ -15,16 +15,16 @@
 			<p:panelGrid columns="2">
 
 
-				<p:outputLabel value="University English Name" />
+				<p:outputLabel value="#{msg.lbl_eng_name}" />
 				<p:inputText value="#{mbAddUniversity.university.universityEName}" />
 
-				<p:outputLabel value="University Arabic Name" />
+				<p:outputLabel value="#{msg.lbl_ar_name}" />
 				<p:inputText value="#{mbAddUniversity.university.universityAName}" />
 
-				<p:outputLabel value="Website" />
+				<p:outputLabel value="#{msg.lbl_website}" />
 				<p:inputText value="#{mbAddUniversity.university.website}" />
 
-				<p:commandButton value="Add" action="#{mbAddUniversity.add()}"
+				<p:commandButton value="#{msg.btn_add}" action="#{mbAddUniversity.add()}"
 					ajax="false" />
 
 			</p:panelGrid>

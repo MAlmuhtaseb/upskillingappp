@@ -18,16 +18,20 @@ public class AddStudentResult {
     private StudentResult studentResult;
     private List<Student> studentTable;
     private List<TrainingCourse> trainingCourseTable;
+  
     
     @PostConstruct
     public void init() {
-	studentResult = new StudentResult();
+	
+	
+	
 	StudentDAO studentDAO = new StudentDAO();
 	studentTable = studentDAO.selectAll();
-	studentResult.setStudent(new Student());
+	
+	
 	TrainingCourseDAO trainingCourseDAO = new TrainingCourseDAO();
 	trainingCourseTable = trainingCourseDAO.selectAll();
-	studentResult.setTrainingCourse(new TrainingCourse());
+	
     }
     
     public String add() {
@@ -41,20 +45,20 @@ public class AddStudentResult {
 	return null;
     }
     
-    public StudentResult getStudentResult() {
-	return studentResult;
-    }
-    
-    
-    
 //    public StudentResult getStudentResult() {
-//        if (studentResult == null ) {
-//	    studentResult = new StudentResult();
-//	    studentResult.setStudent(new Student());
-//	    studentResult.setTrainingCourse(new TrainingCourse());
-//	}
-//        return studentResult;
+//	return studentResult;
 //    }
+    
+    
+    
+    public StudentResult getStudentResult() {
+        if (studentResult == null ) {
+	    studentResult = new StudentResult();
+	    studentResult.setStudent(new Student());
+	    studentResult.setTrainingCourse(new TrainingCourse());
+	}
+        return studentResult;
+    }
     public void setStudentResult(StudentResult studentResult) {
         this.studentResult = studentResult;
     }

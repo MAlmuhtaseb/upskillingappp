@@ -21,39 +21,39 @@
 			<p:dataTable value="#{mbUniversity.universityTable}" var="u">
 				<f:facet name="header">
 					<h:outputText
-						value="Universities (#{mbUniversity.universityTable.size()})" />
+						value="#{msg.lbl_unis} (#{mbUniversity.universityTable.size()})" />
 				</f:facet>
 
-				<p:column headerText="University ID" sortBy="#{u.universityId}">
+				<p:column headerText="#{msg.lbl_uni_id}" sortBy="#{u.universityId}">
 					<h:outputText value="#{u.universityId}" />
 				</p:column>
 
-				<p:column headerText="University English Name"
+				<p:column headerText="#{msg.lbl_eng_name}"
 					sortBy="#{u.universityEName}">
 					<h:outputText value="#{u.universityEName}" />
 				</p:column>
 
-				<p:column headerText="University Arabic Name"
+				<p:column headerText="#{msg.lbl_ar_name}"
 					sortBy="#{u.universityAName}">
 					<h:outputText value="#{u.universityAName}" />
 				</p:column>
 
-				<p:column headerText="Website" sortBy="#{u.website}">
+				<p:column headerText="#{msg.lbl_website}" sortBy="#{u.website}">
 					<h:outputText value="#{u.website}" />
 				</p:column>
 
 
 
-				<p:column headerText="Edit">
-					<p:commandButton value="Edit" update=":form:editPnl"
+				<p:column headerText="#{msg.btn_edit}">
+					<p:commandButton value="..." update=":form:editPnl"
 						process="@this" onclick="PF('uniEditDlg').show()">
 						<f:setPropertyActionListener value="#{u}"
 							target="#{mbUniversity.selectedUniversity}" />
 					</p:commandButton>
 				</p:column>
 
-				<p:column headerText="Delete">
-					<p:commandButton value="Delete"
+				<p:column headerText="#{msg.btn_delete}">
+					<p:commandButton value="X"
 						action="#{mbUniversity.removeUniversity()}" ajax="false">
 						<f:setPropertyActionListener value="#{u}"
 							target="#{mbUniversity.selectedUniversity}"></f:setPropertyActionListener>
@@ -70,29 +70,29 @@
 
 
 
-		<p:dialog header="Edit University" widgetVar="uniEditDlg" modal="true">
+		<p:dialog header="#{msg.lbl_edit_uni}" widgetVar="uniEditDlg" modal="true">
 
 			<p:panelGrid id="editPnl" columns="2">
 
-				<p:outputLabel value="University ID" />
+				<p:outputLabel value="#{msg.lbl_uni_id}" />
 				<h:outputText
 					value="#{mbUniversity.selectedUniversity.universityId}" />
 
-				<p:outputLabel value="University English Name" />
+				<p:outputLabel value="#{msg.lbl_eng_name}" />
 				<p:inputText
 					value="#{mbUniversity.selectedUniversity.universityEName}" />
 
-				<p:outputLabel value="University Arabic Name" />
+				<p:outputLabel value="#{msg.lbl_ar_name}" />
 				<p:inputText
 					value="#{mbUniversity.selectedUniversity.universityAName}" />
 
-				<p:outputLabel value="Website" />
+				<p:outputLabel value="#{msg.lbl_website}" />
 				<p:inputText value="#{mbUniversity.selectedUniversity.website}" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Edit"
+					<p:commandButton value="#{msg.btn_edit}"
 						action="#{mbUniversity.updateUniversity()}" ajax="false" />
-					<p:commandButton value="Close" type="button"
+					<p:commandButton value="#{msg.btn_close}" type="button"
 						onclick="PF('uniEditDlg').hide()" />
 				</f:facet>
 			</p:panelGrid>

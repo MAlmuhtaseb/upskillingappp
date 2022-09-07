@@ -16,51 +16,49 @@
 				<p:dataTable value="#{mbStudent.studentTable}" var="s">
 
 					<f:facet name="header">
-						<h:outputText value="Students (#{mbStudent.studentTable.size()})" />
+						<h:outputText value="#{msg.lbl_students} (#{mbStudent.studentTable.size()})" />
 					</f:facet>
 
-					<p:column headerText="Student ID" sortBy="#{s.studentId}">
+					<p:column headerText="#{msg.lbl_student_id}" sortBy="#{s.studentId}">
 						<h:outputText value="#{s.studentId}" />
 					</p:column>
 
-					<p:column headerText="English Name" sortBy="#{s.studentEName}">
+					<p:column headerText="#{msg.lbl_eng_name}" sortBy="#{s.studentEName}">
 						<h:outputText value="#{s.studentEName}" />
 					</p:column>
 
-					<p:column headerText="Arabic Name" sortBy="#{s.studentAName}">
+					<p:column headerText="#{msg.lbl_ar_name}" sortBy="#{s.studentAName}">
 						<h:outputText value="#{s.studentAName}" />
 					</p:column>
 
-					<p:column headerText="Mobile" sortBy="#{s.mobile}">
+					<p:column headerText="#{msg.lbl_mobile}" sortBy="#{s.mobile}">
 						<h:outputText value="#{s.mobile}" />
 					</p:column>
 
-					<p:column headerText="Birth date" sortBy="#{s.birthDate}">
+					<p:column headerText="#{msg.lbl_birth_date}" sortBy="#{s.birthDate}">
 						<h:outputText value="#{s.birthDate}" />
 					</p:column>
 
-					<p:column headerText="Gender" sortBy="#{mbStudent.genderText[s.gender]}">
+					<p:column headerText="#{msg.lbl_gender}" sortBy="#{mbStudent.genderText[s.gender]}">
 						<h:outputText value="#{mbStudent.genderText[s.gender]}" />
 					</p:column>
 					
-					<p:column headerText="Email" sortBy="#{s.email}">
-							<h:outputText value="#{s.email}" />
+					
+
+						<p:column headerText="#{msg.lbl_uni_name}"
+							sortBy="#{s.university.universityEName}">
+							<h:outputText value="#{mbSec.lang.equals('en') ? s.university.universityEName : s.university.universityAName}" />
 						</p:column>
 
-						<p:column headerText="University"
-							sortBy="#{s.university.universityId}">
-							<h:outputText value="#{s.university.universityId}" />
+						<p:column headerText="#{msg.lbl_school_name}" sortBy="#{s.school.schoolEName}">
+							<h:outputText value="#{mbSec.lang.equals('en') ? s.school.schoolEName : s.school.schoolAName}" />
 						</p:column>
 
-						<p:column headerText="School" sortBy="#{s.school.schoolId}">
-							<h:outputText value="#{s.school.schoolId}" />
+						<p:column headerText="#{msg.lbl_program_name}" sortBy="#{s.program.programEName}">
+							<h:outputText value="#{mbSec.lang.equals('en') ? s.program.programEName : s.program.programAName}" />
 						</p:column>
 
-						<p:column headerText="Program" sortBy="#{s.program.programId}">
-							<h:outputText value="#{s.program.programId}" />
-						</p:column>
-
-					<p:column headerText="Edit">
+					<p:column headerText="#{msg.btn_edit}">
 						<p:commandButton value="..." update=":form:editPnl"
 							process="@this" onclick="PF('stdEditDlg').show()">
 							<f:setPropertyActionListener value="#{s}"
@@ -68,7 +66,7 @@
 						</p:commandButton>
 					</p:column>
 
-					<p:column headerText="Delete">
+					<p:column headerText="#{msg.btn_delete}">
 						<p:commandButton value="X" action="#{mbStudent.removeStudent()}"
 							ajax="false">
 							<f:setPropertyActionListener value="#{s}"
@@ -76,7 +74,7 @@
 						</p:commandButton>
 					</p:column>
 
-					<p:column headerText="Expand">
+					<p:column headerText="#{msg.btn_expand}">
 						<p:commandButton value="+" update=":form:expandPnl"
 							process="@this" onclick="PF('stdExpandDlg').show()">
 							<f:setPropertyActionListener value="#{s}"
@@ -90,78 +88,78 @@
 
 			</p:panel>
 
-			<p:dialog header="Edit Student" widgetVar="stdEditDlg" modal="true">
+			<p:dialog header="#{msg.lbl_edit_student}" widgetVar="stdEditDlg" modal="true">
 				<p:panelGrid id="editPnl" columns="2">
 
-					<p:outputLabel value="Student ID" />
+					<p:outputLabel value="#{msg.lbl_student_id}" />
 					<h:outputText value="#{mbStudent.selectedStudent.studentId}" />
 
-					<p:outputLabel value="English Name" />
+					<p:outputLabel value="#{msg.lbl_eng_name}" />
 					<p:inputText value="#{mbStudent.selectedStudent.studentEName}" />
 
-					<p:outputLabel value="Arabic Name" />
+					<p:outputLabel value="#{msg.lbl_ar_name}" />
 					<p:inputText value="#{mbStudent.selectedStudent.studentAName}" />
 
-					<p:outputLabel value="Mobile" />
+					<p:outputLabel value="#{msg.lbl_mobile}" />
 					<p:inputText value="#{mbStudent.selectedStudent.mobile}" />
 
-					<p:outputLabel value="Birth date" />
+					<p:outputLabel value="#{msg.lbl_birth_date}" />
 					<p:calendar value="#{mbStudent.selectedStudent.birthDate}"/>
 
-					<p:outputLabel value="Gender" for="gender"/>
+					<p:outputLabel value="#{msg.lbl_gender}" for="gender"/>
 					<p:selectOneRadio id="gender" value="#{mbStudent.selectedStudent.gender}">
-					<f:selectItem itemLabel="Male" itemValue="1"/>
-					<f:selectItem itemLabel="Female" itemValue="2"/>
+					<f:selectItem itemLabel="#{msg.lbl_male}" itemValue="1"/>
+					<f:selectItem itemLabel="#{msg.lbl_female}" itemValue="2"/>
 					</p:selectOneRadio>
 
-					<p:outputLabel value="Email" />
+					<p:outputLabel value="#{msg.lbl_email}" />
 					<p:inputText value="#{mbStudent.selectedStudent.email}" />
 
-					<p:outputLabel value="University Name" for="uni" />
+					<p:outputLabel value="#{msg.lbl_uni_name}" for="uni" />
 					<p:selectOneMenu id="uni"
 						value="#{mbStudent.selectedStudent.university.universityId}">
-						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
 						<f:selectItems value="#{mbStudent.universityTable}" var="u"
-							itemLabel="#{u.universityEName}"
+							itemLabel="#{mbSec.lang.equals('en') ? u.universityEName : u.universityAName}"
 							itemValue="#{u.universityId}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="School Name" for="school"/>
+					<p:outputLabel value="#{msg.lbl_school_name}" for="school"/>
 					<p:selectOneMenu id="school"
 						value="#{mbStudent.selectedStudent.school.schoolId}">
-						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
 						<f:selectItems value="#{mbStudent.schoolTable}" var="s"
-							itemLabel="#{s.schoolEName}"
+							itemLabel="#{mbSec.lang.equals('en') ? s.schoolEName : s.schoolAName}"
 							itemValue="#{s.schoolId}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="Program Name" for="prog"/>
+					<p:outputLabel value="#{msg.lbl_program_name}" for="prog"/>
 					<p:selectOneMenu id="prog"
 						value="#{mbStudent.selectedStudent.program.programId}">
-						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
 						<f:selectItems value="#{mbStudent.programTable}" var="p"
-							itemLabel="#{p.programEName}"
+							itemLabel="#{mbSec.lang.equals('en') ? p.programEName: p.programAName}"
 							itemValue="#{p.programId}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="Final Average" />
+					<p:outputLabel value="#{msg.lbl_final_avg}" />
 					<p:inputText value="#{mbStudent.selectedStudent.finalAverage}" />
 
-					<p:outputLabel value="Maximum Average" />
+					<p:outputLabel value="#{msg.lbl_max_avg}" />
 					<p:inputText value="#{mbStudent.selectedStudent.maxAverage}" />
 
-					<p:outputLabel value="Rate" />
+					<p:outputLabel value="#{msg.lbl_rate}" />
 					<p:inputText value="#{mbStudent.selectedStudent.rate}" />
 
-					<p:outputLabel value="Graduate Year" />
+					<p:outputLabel value="#{msg.lbl_grad_year}" />
 					<p:inputText value="#{mbStudent.selectedStudent.graduateYear}" />
 
-					<p:outputLabel value="Graduate Semester" />
+					<p:outputLabel value="#{msg.lbl_grad_sem}" />
 					<p:inputText value="#{mbStudent.selectedStudent.graduateSemester}" />
 
-					<p:commandButton value="Edit" action="#{mbStudent.updateStudent()}"
+					<p:commandButton value="#{msg.btn_edit}" action="#{mbStudent.updateStudent()}"
 						ajax="false" />
-					<p:commandButton value="Close" type="button"
+					<p:commandButton value="#{msg.btn_close}" type="button"
 						onclick="PF('stdEditDlg').hide()" />
 				</p:panelGrid>
 
@@ -169,40 +167,41 @@
 			</p:dialog>
 
 
-			<p:dialog header="Student Information" widgetVar="stdExpandDlg"
+			<p:dialog header="#{msg.lbl_student_information}" widgetVar="stdExpandDlg"
 				modal="true">
 
 				<p:panel id="expandPnl">
 				
-					<p:dataTable value="#{mbStudent.studentTable}" var="s">
+				
+					<p:dataTable value="#{mbStudent.selectedStudent}" var="s">
 					
-					<p:column headerText="English Name" sortBy="#{s.studentEName}">
-						<h:outputText value="#{s.studentEName}" />
-					</p:column>
+					<p:column headerText="#{msg.lbl_email}" sortBy="#{s.email}">
+							<h:outputText value="#{s.email}" />
+						</p:column>
 						
 
-						<p:column headerText="Final Average" sortBy="#{s.finalAverage}">
+						<p:column headerText="#{msg.lbl_final_avg}" sortBy="#{s.finalAverage}">
 							<h:outputText value="#{s.finalAverage}" />
 						</p:column>
 
-						<p:column headerText="Maximum Average" sortBy="#{s.maxAverage}">
+						<p:column headerText="#{msg.lbl_max_avg}" sortBy="#{s.maxAverage}">
 							<h:outputText value="#{s.maxAverage}" />
 						</p:column>
 
-						<p:column headerText="Rate" sortBy="#{s.rate}">
+						<p:column headerText="#{msg.lbl_rate}" sortBy="#{s.rate}">
 							<h:outputText value="#{s.rate}" />
 						</p:column>
 
-						<p:column headerText="Graduate Year" sortBy="#{s.graduateYear}">
+						<p:column headerText="#{msg.lbl_grad_year}" sortBy="#{s.graduateYear}">
 							<h:outputText value="#{s.graduateYear}" />
 						</p:column>
 
-						<p:column headerText="Graduate Semester"
+						<p:column headerText="#{msg.lbl_grad_sem}"
 							sortBy="#{s.graduateSemester}">
 							<h:outputText value="#{s.graduateSemester}" />
 						</p:column>
 					</p:dataTable>
-					<p:commandButton value="Close" type="button"
+					<p:commandButton value="#{msg.btn_close}" type="button"
 						onclick="PF('stdExpandDlg').hide()" />
 				</p:panel>
 

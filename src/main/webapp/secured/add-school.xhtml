@@ -16,14 +16,14 @@
 
 
 
-				<p:outputLabel value="School English Name" />
+				<p:outputLabel value="#{msg.lbl_eng_name}" />
 				<p:inputText value="#{mbAddSchool.school.schoolEName}" />
 
-				<p:outputLabel value="School Arabic Name" />
+				<p:outputLabel value="#{msg.lbl_ar_name}" />
 				<p:inputText value="#{mbAddSchool.school.schoolAName}" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Add" action="#{mbAddSchool.add()}"
+					<p:commandButton value="#{msg.btn_add}" action="#{mbAddSchool.add()}"
 						ajax="false" />
 				</f:facet>
 

@@ -18,29 +18,31 @@
 					value="#{mbStudentTrainingCourse.studentTrainingCourseTable}"
 					var="stc">
 
-					<p:column headerText="Student Name"
+					<p:column headerText="#{msg.lbl_student_name}"
 						sortBy="#{stc.student.studentEName}"
 						filterBy="#{stc.student.studentEName}" filterMatchMode="contains">
-						<h:outputText value="#{stc.student.studentEName}" />
+						<h:outputText
+							value="#{mbSec.lang.equals('en') ? stc.student.studentEName : stc.student.studentAName}" />
 					</p:column>
 
-					<p:column headerText="Course Name">
-						<h:outputText value="#{stc.trainingCourse.courseEName}" />
+					<p:column headerText="#{msg.lbl_course_name}">
+						<h:outputText
+							value="#{mbSec.lang.equals('en') ? stc.trainingCourse.courseEName : stc.trainingCourse.courseAName}" />
 					</p:column>
 
-					<p:column headerText="Priority" sortBy="#{stc.priority}">
+					<p:column headerText="#{msg.lbl_priority}" sortBy="#{stc.priority}">
 						<h:outputText value="#{stc.priority}" />
 					</p:column>
 
-					<p:column headerText="Edit">
+					<p:column headerText="#{msg.btn_edit}">
 						<p:commandButton value="..." update=":form:editPnl"
 							process="@this" onclick="PF('STCEditDlg').show()">
 							<f:setPropertyActionListener value="#{stc}"
-								target="#{mbStudentTrainingCourse.selectedStudentTrainingCourse}"></f:setPropertyActionListener>
+								target="#{mbStudentTrainingCourse.selectedStudentTrainingCourse}" />
 						</p:commandButton>
 					</p:column>
 
-					<p:column headerText="Delete">
+					<p:column headerText="#{msg.btn_delete}">
 						<p:commandButton value="X"
 							action="#{mbStudentTrainingCourse.removeStudentTrainingCourse()}"
 							ajax="false">
@@ -53,35 +55,28 @@
 
 			</p:panel>
 
-			<p:dialog header="Edit Student Training Courses"
+			<p:dialog header="#{msg.lbl_edit_student_training_course}"
 				widgetVar="STCEditDlg" modal="true">
 				<p:panelGrid id="editPnl" columns="2">
 
-					<p:outputLabel value="Student Name" />
-					<p:selectOneMenu
-						value="#{mbStudentTrainingCourse.selectedStudentTrainingCourse.student.studentId}">
-						<f:selectItem itemLabel="Select Name" itemValue="" />
-						<f:selectItems
-							value="#{mbStudentTrainingCourse.studentTable}"
-							var="s" itemLabel="#{s.studentEName}"
-							itemValue="#{s.studentId}" />
-							</p:selectOneMenu>
-							<p:outputLabel value="Course Name" />
-					<p:selectOneMenu
-						value="#{mbStudentTrainingCourse.selectedStudentTrainingCourse.trainingCourse.courseId}">
-						<f:selectItem itemLabel="Course Name" itemValue="" />
-						<f:selectItems
-							value="#{mbStudentTrainingCourse.trainingCourseTable}"
-							var="c" itemLabel="#{c.courseEName}"
-							itemValue="#{c.courseId}" />
-					</p:selectOneMenu>
-					
-					<p:outputLabel value="Priority"/>
-					<p:inputNumber value="#{mbStudentTrainingCourse.selectedStudentTrainingCourse.priority}"/>
+					<p:outputLabel value="#{msg.lbl_student_name}" />
+					<h:outputText
+						value="#{mbSec.lang.equals('en') ? mbStudentTrainingCourse.selectedStudentTrainingCourse.student.studentEName : mbStudentTrainingCourse.selectedStudentTrainingCourse.student.studentAName}" />
+
+					<p:outputLabel value="#{msg.lbl_course_name}" />
+					<h:outputText
+						value="#{mbSec.lang.equals('en') ? mbStudentTrainingCourse.selectedStudentTrainingCourse.trainingCourse.courseEName : mbStudentTrainingCourse.selectedStudentTrainingCourse.trainingCourse.courseAName}" />
+
+					<p:outputLabel value="#{msg.lbl_priority}" />
+					<p:inputNumber
+						value="#{mbStudentTrainingCourse.selectedStudentTrainingCourse.priority}" />
 				</p:panelGrid>
-				
-				<p:commandButton value="Edit" action="#{mbStudentTrainingCourse.updateStudentTrainingCourse()}" ajax="false"/>
-				<p:commandButton value="Close" type="button" onclick="PF('STCEditDlg').hide()"/>
+
+				<p:commandButton value="#{msg.btn_edit}"
+					action="#{mbStudentTrainingCourse.updateStudentTrainingCourse()}"
+					ajax="false" />
+				<p:commandButton value="#{msg.btn_close}" type="button"
+					onclick="PF('STCEditDlg').hide()" />
 
 			</p:dialog>
 

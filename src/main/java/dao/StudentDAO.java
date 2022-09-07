@@ -47,9 +47,11 @@ public class StudentDAO {
 		UniversityDAO universityDAO = new UniversityDAO();
 		University university = universityDAO.selectById(rs.getInt("university_id"));
 		student.setUniversity(university);
+		
 		SchoolDAO schoolDAO = new SchoolDAO();
 		School school = schoolDAO.selectById(rs.getInt("school_id"));
 		student.setSchool(school);
+		
 		ProgramDAO programDAO = new ProgramDAO();
 		Program program = programDAO.selectById(rs.getInt("program_id"));
 		student.setProgram(program);

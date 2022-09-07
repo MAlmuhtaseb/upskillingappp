@@ -10,34 +10,39 @@
 	<ui:define name="title">Upskilling Web Application</ui:define>
 
 	<ui:define name="content">
-	
-	<h:form id="form">
-	<p:panelGrid columns="2">
-	<p:outputLabel value="Student Name" for="studentList"/>
-	<p:selectOneMenu id="studentList" value="#{mbAddInterview.interview.student.studentId}">
-	<f:selectItem itemLabel="Select Student" itemValue=""/>
-	<f:selectItems value="#{mbAddInterview.studentTable}" var="s" itemLabel="#{s.studentEName}" itemValue="#{s.studentId}"/>
-	</p:selectOneMenu>
-	
-	<p:outputLabel value="Interview Date"/>
-	<p:calendar value="#{mbAddInterview.interview.interviewDate}"/>
-	
-	<p:outputLabel value="Interview Time"/>
-	<pe:timePicker value="#{mbAddInterview.interview.interviewTime}" mode="popup"/>
-	
-	<p:outputLabel value="Duration"/>
-	<p:inputText value="#{mbAddInterview.interview.duration}"/>
-	
-	<f:facet name="footer">
-	<p:commandButton value="#{msg.btn_add}" action="#{mbAddInterview.add()}" ajax="false"/>
-	</f:facet>
-	
-	</p:panelGrid>
-	
-	
-	</h:form>
-	
-	
-	
+
+		<h:form id="form">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="#{msg.lbl_student_name}" for="studentList" />
+				<p:selectOneMenu id="studentList"
+					value="#{mbAddInterview.interview.student.studentId}">
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
+					<f:selectItems value="#{mbAddInterview.studentTable}" var="s"
+						itemLabel="#{mbSec.lang.equals('en') ? s.studentEName : s.studentAName}"
+						itemValue="#{s.studentId}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_interview_date}" />
+				<p:calendar value="#{mbAddInterview.interview.interviewDate}" />
+
+				<p:outputLabel value="#{msg.lbl_interview_time}" />
+				<pe:timePicker value="#{mbAddInterview.interview.interviewTime}"
+					mode="popup" />
+
+				<p:outputLabel value="#{msg.lbl_duration}" />
+				<p:inputText value="#{mbAddInterview.interview.duration}" />
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.btn_add}"
+						action="#{mbAddInterview.add()}" ajax="false" />
+				</f:facet>
+
+			</p:panelGrid>
+
+
+		</h:form>
+
+
+
 	</ui:define>
-	</ui:composition>
+</ui:composition>

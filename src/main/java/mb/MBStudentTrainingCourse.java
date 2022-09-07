@@ -44,7 +44,7 @@ public class MBStudentTrainingCourse {
     }
     
     public String removeStudentTrainingCourse() {
-	studentTrainingCourseDAO.delete(selectedStudentTrainingCourse.getStudent().getStudentId());
+	studentTrainingCourseDAO.delete(selectedStudentTrainingCourse.getStudent().getStudentId(), selectedStudentTrainingCourse.getTrainingCourse().getCourseId());
 	studentTrainingCourseTable = studentTrainingCourseDAO.selectAll();
 	return null;
     }

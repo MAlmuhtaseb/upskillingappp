@@ -9,16 +9,16 @@
 			<p:spacer height="100" />
 			<p:panelGrid columns="2">
 
-				<p:outputLabel value="username" for="user" />
+				<p:outputLabel value="#{msg.lbl_username}" for="user" />
 				<p:inputText id="user" value="#{mbSec.username}" />
 
-				<p:outputLabel value="Password" for="pass" />
+				<p:outputLabel value="#{msg.lbl_password}" for="pass" />
 				<p:inputText id="pass" value="#{mbSec.password}" />
 
 				<f:facet name="footer">
-					<p:commandButton value="login" action="#{mbSec.checkUser()}"
+					<p:commandButton value="#{msg.btn_login}" action="#{mbSec.checkUser()}"
 						ajax="false" />
-					<p:commandButton value="reset" type="reset" />
+					<p:commandButton value="#{msg.btn_reset}" type="reset" />
 
 					<p:selectOneMenu value="#{mbSec.lang}" onchange="submit()"
 						valueChangeListener="#{mbSec.localeChanged}">

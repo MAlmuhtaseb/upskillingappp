@@ -1,0 +1,46 @@
+@font-face {
+	font-family: 'Noto Kufi Arabic';
+	font-style: normal;
+	font-weight: 400;
+	src: url(/javacourse/resources/fonts/NotoKufiArabic-Regular.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'Noto Kufi Arabic';
+	font-style: normal;
+	font-weight: 700;
+	src: url(/javacourse/resources/fonts/NotoKufiArabic-Bold.ttf) format('truetype');
+}
+
+.ui-widget {
+	font-size: 0.96em !important;
+	font-family: 'Noto Kufi Arabic', serif;
+}
+
+.ui-widget-header {
+	border: 1px solid #4297d7;
+/*	background: #2191c0;
+	color: #ffffff; */
+	font-weight: bold;
+}
+
+.ui-panel-title {
+	margin: 0.1em 0px 0.2em 0 !important;
+}
+
+.ui-panel .ui-panel-footer {
+	text-align: center !important;
+/*	background: #2191c0; 
+	color: #ffffff; */
+}
+
+.ui-growl {
+	right: 50%;
+	margin-right: -150px;
+}
+
+.footer{
+	color: white;
+	font-weight: bold;
+	
+}

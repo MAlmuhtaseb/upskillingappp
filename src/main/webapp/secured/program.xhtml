@@ -10,83 +10,92 @@
 
 	<ui:define name="content">
 
-	<h:form id="form">
-		<p:panel id="programPnl">
-			<p:dataTable value="#{mbProgram.programTable}" var="p">
+		<h:form id="form">
+			<p:panel id="programPnl">
+				<p:dataTable value="#{mbProgram.programTable}" var="p">
 
-				<f:facet name="header">
-					<h:outputText value="Programs (#{mbProgram.programTable.size()})" />
-				</f:facet>
-
-				<p:column headerText="School English Name" sortBy="{#{p.school.schoolEName}}">
-					<h:outputText value="#{p.school.schoolEName}" />
-				</p:column>
-
-				<p:column headerText="Program ID" sortBy="#{p.programId}">
-					<h:outputText value="#{p.programId}" />
-				</p:column>
-
-				<p:column headerText="Program English Name"
-					sortBy="#{p.programEName}">
-					<h:outputText value="#{p.programEName}" />
-				</p:column>
-
-				<p:column headerText="Program Arabic Name"
-					sortBy="#{p.programAName}">
-					<h:outputText value="#{p.programAName}" />
-				</p:column>
-
-				<p:column headerText="Edit">
-					<p:commandButton value="Edit" update=":form:editPnl"
-						process="@this" onclick="PF('progEditDlg').show()">
-						<f:setPropertyActionListener value="#{p}"
-							target="#{mbProgram.selectedProgram}" />
-					</p:commandButton>
-				</p:column>
-
-				<p:column headerText="Delete">
-					<p:commandButton value="Delete"
-						action="#{mbProgram.removeProgram()}" ajax="false">
-						<f:setPropertyActionListener value="#{p}"
-							target="#{mbProgram.selectedProgram}" />
-					</p:commandButton>
-				</p:column>
+					<f:facet name="header">
+						<h:outputText
+							value="#{msg.lbl_programs} (#{mbProgram.programTable.size()})" />
+					</f:facet>
 
 
-			</p:dataTable>
-		</p:panel>
 
-		
+					<p:column headerText="#{msg.lbl_program_id}"
+						sortBy="#{p.programId}">
+						<h:outputText value="#{p.programId}" />
+					</p:column>
 
-		<p:dialog header="Edit Program" widgetVar="progEditDlg" modal="true">
-			<p:panelGrid id="editPnl" columns="2">
-				<p:outputLabel value="Program Name" />
-				<h:outputText value="#{mbProgram.selectedProgram.programEName}" />
+					<p:column headerText="#{msg.lbl_school_name}"
+						sortBy="{#{p.school.schoolEName}}">
+						<h:outputText
+							value="#{mbSec.lang.equals('en') ? p.school.schoolEName : p.school.schoolAName}" />
+					</p:column>
 
-		   	   	<p:outputLabel value="School ID" for="schoolEdit"/>
-				<p:selectOneMenu id="schoolEdit"
-					value="#{mbProgram.selectedProgram.school.schoolId}">
-					<f:selectItems value="#{mbProgram.schoolTable}" var="se"
-						itemLabel="#{se.schoolEName}" itemValue="#{se.schoolId}" />
+					<p:column headerText="#{msg.lbl_program_eng_name}"
+						sortBy="#{p.programEName}">
+						<h:outputText value="#{p.programEName}" />
+					</p:column>
 
-				</p:selectOneMenu> 
-				
-				
-				
-				<p:outputLabel value="Program English Name" />
-				<p:inputText value="#{mbProgram.selectedProgram.programEName}" />
+					<p:column headerText="#{msg.lbl_program_ar_name}"
+						sortBy="#{p.programAName}">
+						<h:outputText value="#{p.programAName}" />
+					</p:column>
 
-				<p:outputLabel value="Program Arabic Name" />
-				<p:inputText value="#{mbProgram.selectedProgram.programAName}" />
+					<p:column headerText="#{msg.btn_edit}">
+						<p:commandButton value="..." update=":form:editPnl"
+							process="@this" onclick="PF('progEditDlg').show()">
+							<f:setPropertyActionListener value="#{p}"
+								target="#{mbProgram.selectedProgram}" />
+						</p:commandButton>
+					</p:column>
 
-				<p:commandButton value="Edit" action="#{mbProgram.updateProgram()}"
-					ajax="false" />
-				<p:commandButton value="Close" type="button"
-					onclick="PF('progEditDlg').hide()" />
-			</p:panelGrid>
-		</p:dialog>
+					<p:column headerText="#{msg.btn_delete}">
+						<p:commandButton value="X" action="#{mbProgram.removeProgram()}"
+							ajax="false">
+							<f:setPropertyActionListener value="#{p}"
+								target="#{mbProgram.selectedProgram}" />
+						</p:commandButton>
+					</p:column>
 
-	</h:form>
 
-</ui:define>
+				</p:dataTable>
+			</p:panel>
+
+
+
+			<p:dialog header="#{msg.lbl_edit_program}" widgetVar="progEditDlg"
+				modal="true">
+				<p:panelGrid id="editPnl" columns="2">
+					<p:outputLabel value="#{msg.lbl_program_name}" />
+					<h:outputText
+						value="#{mbSec.lang.equals('en') ? mbProgram.selectedProgram.programEName : mbProgram.selectedProgram.programAName}" />
+
+					<p:outputLabel value="#{msg.lbl_school_name}" for="schoolEdit" />
+					<p:selectOneMenu id="schoolEdit"
+						value="#{mbProgram.selectedProgram.school.schoolId}">
+						<f:selectItems value="#{mbProgram.schoolTable}" var="se"
+							itemLabel="#{mbSec.lang.equals('en') ? se.schoolEName : se.schoolAName}"
+							itemValue="#{se.schoolId}" />
+
+					</p:selectOneMenu>
+
+
+
+					<p:outputLabel value="#{msg.lbl_program_eng_name}" />
+					<p:inputText value="#{mbProgram.selectedProgram.programEName}" />
+
+					<p:outputLabel value="#{msg.lbl_program_ar_name}" />
+					<p:inputText value="#{mbProgram.selectedProgram.programAName}" />
+
+					<p:commandButton value="#{msg.btn_edit}"
+						action="#{mbProgram.updateProgram()}" ajax="false" />
+					<p:commandButton value="#{msg.btn_close}" type="button"
+						onclick="PF('progEditDlg').hide()" />
+				</p:panelGrid>
+			</p:dialog>
+
+		</h:form>
+
+	</ui:define>
 </ui:composition>

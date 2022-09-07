@@ -16,31 +16,31 @@
 			<p:dataTable value="#{mbSchool.schoolTable}" var="s">
 
 				<f:facet name="header">
-					<h:outputText value="Schools (#{mbSchool.schoolTable.size()})" />
+					<h:outputText value="#{msg.lbl_schools} (#{mbSchool.schoolTable.size()})" />
 				</f:facet>
 
-				<p:column headerText="School ID" sortBy="#{s.schoolId}">
+				<p:column headerText="#{msg.lbl_school_id}" sortBy="#{s.schoolId}">
 					<h:outputText value="#{s.schoolId}" />
 				</p:column>
 
-				<p:column headerText="School English Name" sortBy="#{s.schoolEName}">
+				<p:column headerText="#{msg.lbl_eng_name}" sortBy="#{s.schoolEName}">
 					<h:outputText value="#{s.schoolEName}" />
 				</p:column>
 
-				<p:column headerText="School Arabic Name" sortBy="#{s.schoolAName}">
+				<p:column headerText="#{msg.lbl_ar_name}" sortBy="#{s.schoolAName}">
 					<h:outputText value="#{s.schoolAName}" />
 				</p:column>
 
-				<p:column headerText="Edit">
-					<p:commandButton value="Edit" update=":form:editPnl"
+				<p:column headerText="#{msg.btn_edit}">
+					<p:commandButton value="..." update=":form:editPnl"
 						process="@this" onclick="PF('schoolEditDlg').show()">
 						<f:setPropertyActionListener value="#{s}"
 							target="#{mbSchool.selectedSchool}" />
 					</p:commandButton>
 				</p:column>
 
-				<p:column headerText="Delete">
-					<p:commandButton value="Delete" action="#{mbSchool.removeSchool()}"
+				<p:column headerText="#{msg.btn_delete}">
+					<p:commandButton value="X" action="#{mbSchool.removeSchool()}"
 						ajax="false">
 						<f:setPropertyActionListener value="#{s}"
 							target="#{mbSchool.selectedSchool}" />
@@ -57,23 +57,23 @@
 
 		
 
-		<p:dialog header="Edit School" widgetVar="schoolEditDlg" modal="true">
+		<p:dialog header="#{msg.lbl_edit_school}" widgetVar="schoolEditDlg" modal="true">
 
 			<p:panelGrid id="editPnl" columns="2">
 
-				<p:outputLabel value="School ID" />
+				<p:outputLabel value="#{msg.lbl_school_id}" />
 				<h:outputText value="#{mbSchool.selectedSchool.schoolId}" /> 
 
-				<p:outputLabel value="School English Name" />
+				<p:outputLabel value="#{msg.lbl_eng_name}" />
 				<p:inputText value="#{mbSchool.selectedSchool.schoolEName}" />
 
-				<p:outputLabel value="School Arabic Name" />
+				<p:outputLabel value="#{msg.lbl_ar_name}" />
 				<p:inputText value="#{mbSchool.selectedSchool.schoolAName}" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Edit" action="#{mbSchool.updateSchool()}"
+					<p:commandButton value="#{msg.btn_edit}" action="#{mbSchool.updateSchool()}"
 						ajax="false" />
-					<p:commandButton value="Close" type="button"
+					<p:commandButton value="#{msg.btn_close}" type="button"
 						onclick="PF('schoolEditDlg').hide()" />
 				</f:facet>
 

@@ -97,17 +97,17 @@ public class StudentResultDAO {
 	    connection = db.getConnection();
 	    ps = connection.prepareStatement(
 		   
-		    "update student_result set  english_mark = ?, interview_mark = ?, accepted_flag = ?, notes = ? where student_id = ? and course_id = ?");
+		    "update student_result set course_id = ?, english_mark = ?, interview_mark = ?, accepted_flag = ?, notes = ? where student_id = ?");
 
 	    int counter = 1;
 
-	    
+	    ps.setInt(counter++, studentResult.getTrainingCourse().getCourseId());
 	    ps.setDouble(counter++, studentResult.getEnglishMark());
 	    ps.setDouble(counter++, studentResult.getInterviewMark());
 	    ps.setInt(counter++, studentResult.getAcceptedFlag());
 	    ps.setString(counter++, studentResult.getNotes());
 	    ps.setInt(counter++, studentResult.getStudent().getStudentId());
-	    ps.setInt(counter++, studentResult.getTrainingCourse().getCourseId());
+	    
 
 	    row = ps.executeUpdate();
 

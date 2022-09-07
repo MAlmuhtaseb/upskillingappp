@@ -91,13 +91,14 @@ public class StudentTrainingCourseDAO {
 	    connection = db.getConnection();
 	    ps = connection.prepareStatement(
 		    
-		    "update student_training_course set course_id = ?, priority = ? where student_id = ?");
+		    "update student_training_course set  priority = ? where student_id = ? and course_id = ?");
 
 	    int counter = 1;
 	    
-	    ps.setInt(counter++, studentTrainingCourse.getTrainingCourse().getCourseId());
+	    
 	    ps.setInt(counter++, studentTrainingCourse.getPriority());
 	    ps.setInt(counter++, studentTrainingCourse.getStudent().getStudentId());
+	    ps.setInt(counter++, studentTrainingCourse.getTrainingCourse().getCourseId());
 	    row = ps.executeUpdate();
 
 	} catch (SQLException e) {
@@ -111,13 +112,14 @@ public class StudentTrainingCourseDAO {
 
     }
 
-    public int delete(int studentId) {
+    public int delete(int studentId, int courseId) {
 	try {
 	    db = new Database();
 	    connection = db.getConnection();
 	    // Might be wrong, to check later
-	    ps = connection.prepareStatement("delete student_training_course where student_id = ?");
+	    ps = connection.prepareStatement("delete student_training_course where student_id = ? and course_id = ?");
 	    ps.setInt(1, studentId);
+	    ps.setInt(2, courseId);
 	    
 
 	    row = ps.executeUpdate();

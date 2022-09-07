@@ -9,46 +9,46 @@
 	<ui:define name="title">Upskilling Web Application</ui:define>
 
 	<ui:define name="content">
-	
-	<h:form id="form">
-	<p:panelGrid columns="2">
-	
-	<p:outputLabel value="Student Name" />
-					<p:selectOneMenu
-						value="#{mbAddStudentTrainingCourse.studentTrainingCourse.student.studentId}" filter="true">
-						<f:selectItem itemLabel="Select Name" itemValue="" />
-						<f:selectItems
-							value="#{mbAddStudentTrainingCourse.studentTable}"
-							var="s" itemLabel="#{s.studentEName}"
-							itemValue="#{s.studentId}" />
-							</p:selectOneMenu>
-							<p:outputLabel value="Course Name" />
-					<p:selectOneMenu
-						value="#{mbAddStudentTrainingCourse.studentTrainingCourse.trainingCourse.courseId}">
-						<f:selectItem itemLabel="Course Name" itemValue="" />
-						<f:selectItems
-							value="#{mbAddStudentTrainingCourse.trainingCourseTable}"
-							var="c" itemLabel="#{c.courseEName}"
-							itemValue="#{c.courseId}" />
-					</p:selectOneMenu>
-					
-					<p:outputLabel value="Priority"/>
-					<p:inputNumber value="#{mbAddStudentTrainingCourse.studentTrainingCourse.priority}" />
-					
-				
-					
-					<f:facet name="footer">
-					<p:commandButton value="Add" action="#{mbAddStudentTrainingCourse.Add()}" ajax="false"/>
-					</f:facet>
-					
-					
-	
-	
-	</p:panelGrid>
-	
-	</h:form>
-	
-	
-	
+
+		<h:form id="form">
+			<p:panelGrid columns="2">
+
+				<p:outputLabel value="#{msg.lbl_student_name}" />
+				<p:selectOneMenu
+					value="#{mbAddStudentTrainingCourse.studentTrainingCourse.student.studentId}"
+					filter="true">
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
+					<f:selectItems value="#{mbAddStudentTrainingCourse.studentTable}"
+						var="s" itemLabel="#{mbSec.lang.equals('en') ? s.studentEName: s.studentAName}" itemValue="#{s.studentId}" />
+				</p:selectOneMenu>
+				<p:outputLabel value="#{msg.lbl_course_name}" />
+				<p:selectOneMenu
+					value="#{mbAddStudentTrainingCourse.studentTrainingCourse.trainingCourse.courseId}">
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="" />
+					<f:selectItems
+						value="#{mbAddStudentTrainingCourse.trainingCourseTable}" var="c"
+						itemLabel="#{mbSec.lang.equals('en') ? c.courseEName: c.courseAName}" itemValue="#{c.courseId}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_priority}" />
+				<p:inputNumber
+					value="#{mbAddStudentTrainingCourse.studentTrainingCourse.priority}" />
+
+
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.btn_add}"
+						action="#{mbAddStudentTrainingCourse.Add()}" ajax="false" />
+				</f:facet>
+
+
+
+
+			</p:panelGrid>
+
+		</h:form>
+
+
+
 	</ui:define>
-	</ui:composition>
+</ui:composition>

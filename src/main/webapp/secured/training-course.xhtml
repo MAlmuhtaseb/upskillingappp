@@ -17,34 +17,34 @@
 
 					<f:facet name="header">
 						<h:outputText
-							value="Courses (#{mbTrainingCourse.trainingCourseTable.size()})" />
+							value="#{msg.lbl_courses} (#{mbTrainingCourse.trainingCourseTable.size()})" />
 					</f:facet>
 
-					<p:column headerText="Course ID">
+					<p:column headerText="#{msg.lbl_course_id}">
 						<h:outputText value="#{c.courseId}" />
 					</p:column>
 
-					<p:column headerText="Course English Name">
+					<p:column headerText="#{msg.lbl_eng_name}">
 						<h:outputText value="#{c.courseEName}" />
 					</p:column>
 
-					<p:column headerText="Course Arabic Name">
+					<p:column headerText="#{msg.lbl_ar_name}">
 						<h:outputText value="#{c.courseAName}" />
 					</p:column>
 
-					<p:column headerText="Maximum Students">
+					<p:column headerText="#{msg.lbl_max_student}">
 						<h:outputText value="#{c.maxStudents}" />
 					</p:column>
 
-					<p:column headerText="Short Description">
-						<h:outputText value="#{c.detailedDesc}" />
+					<p:column headerText="#{msg.lbl_short_desc}">
+						<h:outputText value="#{c.shortDesc}" />
 					</p:column>
 
-					<p:column headerText="Detailed Description">
-						<h:outputText value="#{c.detailedDesc}" />
+					<p:column headerText="#{msg.lbl_detailed_desc}">
+						<h:outputText value="#{c.detailedDesc}" escape="false"/>
 					</p:column>
 
-					<p:column headerText="Edit">
+					<p:column headerText="#{msg.btn_edit}">
 						<p:commandButton value="..." update=":form:editPnl"
 							process="@this" onclick="PF('trainingCourseDlg').show()">
 							<f:setPropertyActionListener value="#{c}"
@@ -52,7 +52,7 @@
 						</p:commandButton>
 					</p:column>
 
-					<p:column headerText="Remove">
+					<p:column headerText="#{msg.btn_delete}">
 						<p:commandButton value="X"
 							action="#{mbTrainingCourse.removeTrainingCourse()}" ajax="false">
 							<f:setPropertyActionListener value="#{c}"
@@ -64,39 +64,40 @@
 
 			</p:panel>
 
-			<p:dialog header="Edit Training Course" widgetVar="trainingCourseDlg"
+			<p:dialog header="#{msg.lbl_edit_training_course}" widgetVar="trainingCourseDlg"
 				modal="true">
 
 				<p:panelGrid id="editPnl" columns="2">
 
-					<p:outputLabel value="Course ID" />
+					<p:outputLabel value="#{msg.lbl_course_id}" />
 					<h:outputText
 						value="#{mbTrainingCourse.selectedTrainingCourse.courseId}" />
 
-					<p:outputLabel value="Course English Name" />
+					<p:outputLabel value="#{msg.lbl_eng_name}" />
 					<p:inputText
 						value="#{mbTrainingCourse.selectedTrainingCourse.courseEName}" />
 
-					<p:outputLabel value="Course Arabic Name" />
+					<p:outputLabel value="#{msg.lbl_ar_name}" />
 					<p:inputText
 						value="#{mbTrainingCourse.selectedTrainingCourse.courseAName}" />
 
-					<p:outputLabel value="Maximum Students" />
+					<p:outputLabel value="#{msg.lbl_max_student}" />
 					<p:inputText
 						value="#{mbTrainingCourse.selectedTrainingCourse.maxStudents}" />
 
-					<p:outputLabel value="Short Description" />
-					<p:inputText
+					<p:outputLabel value="#{msg.lbl_short_desc}" />
+					<p:inputTextarea
 						value="#{mbTrainingCourse.selectedTrainingCourse.shortDesc}" />
+						
 
-					<p:outputLabel value="Detailed Description" />
-					<p:inputText
+					<p:outputLabel value="#{msg.lbl_detailed_desc}" />
+					<p:inputTextarea
 						value="#{mbTrainingCourse.selectedTrainingCourse.detailedDesc}" />
 
 					<f:facet name="footer">
-						<p:commandButton value="Add"
+						<p:commandButton value="#{msg.btn_edit}"
 							action="#{mbTrainingCourse.updateTrainingCourse()}" ajax="false" />
-						<p:commandButton value="Close" type="button"
+						<p:commandButton value="#{msg.btn_close}" type="button"
 							onclick="PF('trainingCourseDlg').hide()" />
 
 					</f:facet>

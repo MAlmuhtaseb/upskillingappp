@@ -26,12 +26,12 @@ public class TrainingCourseDAO {
 	    db = new Database();
 	    connection = db.getConnection();
 	    ps = connection.prepareStatement(
-		    "select course_id, max_students, course_aname, course_ename, short_desc, detailed_desc from training_course order by course_id");
+		    "select course_id, max_students, course_ename, course_aname, short_desc, detailed_desc from training_course order by course_id");
 	    rs = ps.executeQuery();
 
 	    while (rs.next()) {
 		TrainingCourse trainingCourse = new TrainingCourse(rs.getInt("course_id"), rs.getInt("max_students"),
-			rs.getString("course_aname"), rs.getString("course_ename"), rs.getString("short_desc"),
+			rs.getString("course_ename"), rs.getString("course_aname"), rs.getString("short_desc"),
 			rs.getString("detailed_desc"));
 		trainingCourseTable.add(trainingCourse);
 	    }
@@ -55,13 +55,13 @@ public class TrainingCourseDAO {
 	    db = new Database();
 	    connection = db.getConnection();
 	    ps = connection.prepareStatement(
-		    "select course_id, max_students, course_aname,course_ename , short_desc, detailed_desc from training_course where course_id = ?");
+		    "select course_id, max_students, course_ename,course_aname , short_desc, detailed_desc from training_course where course_id = ?");
 	    ps.setInt(1, id);
 	    rs = ps.executeQuery();
 
 	    if (rs.next()) {
 		trainingCourse = new TrainingCourse(rs.getInt("course_id"), rs.getInt("max_students"),
-			rs.getString("course_aname"), rs.getString("course_ename"), rs.getString("short_desc"),
+			rs.getString("course_ename"), rs.getString("course_aname"), rs.getString("short_desc"),
 			rs.getString("detailed_desc"));
 
 	    }
